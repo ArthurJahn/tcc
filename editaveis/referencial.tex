@@ -4,7 +4,7 @@
 
 Para qualquer profissional na área de ensino e aprendizagem, é necessário o estudo das teorias de aprendizagem, no caso específico deste trabalho, foi utilizada a teoria Cognitivista, que serviu como suporte teórico para a modelagem das redes de vídeos interativos utilizadas no sistema.
 
-Segundo \cite{moreira1999}, as teorias de aprendizagem são tentativas de interpretar sistematicamente, organizar e prever os conhecimentos relativos à aprendizagem. Hill (2002) representa as teorias como o ponto de vista sobre a abordagem de assuntos relativos ao aprendizado e a especificação de quais são as variáveis independentes, dependentes e intervenientes que possuem relevância acadêmica.
+Segundo \cite{moreira1999}, as teorias de aprendizagem são tentativas de interpretar sistematicamente, organizar e prever os conhecimentos relativos à aprendizagem. \cite{hill2002} representa as teorias como o ponto de vista sobre a abordagem de assuntos relativos ao aprendizado e a especificação de quais são as variáveis independentes, dependentes e intervenientes que possuem relevância acadêmica.
 
 As teorias behavioristas, ou comportamentalistas, são aquelas ligadas fundamentalmente aos comportamentos observáveis e mensuráveis do indivíduo, tendo como ideia inicial e fundamental o uso de estímulos e respostas.
 
@@ -57,9 +57,60 @@ O princípio da modalidade afirma que o aprendizado é mais efetivo quando se ut
 
 O princípio das diferenças individuais afirma que a modelagem do material multimídia afeta muito mais estudantes de níveis inferiores do que estudantes mais avançados. Esse princípio diz então que a modelagem deve ser mais direcionada para estudantes de menor nível \cite{mayer2014} ou então, pode-se utilizar uma adaptação do conteúdo para adequar o material aos diferentes níveis de estudantes \cite{fragelli2010, brusilovsky1996, brusilovsky1994}, como abordado neste trabalho.
 
+\subsection{Vídeos Interativos}
+
+Um Objeto de Aprendizagem (OA) pode ser definido de forma geral como qualquer material, digital ou não, que possa ser utilizado, reutilizado ou referenciado durante a aprendizagem suportada pela tecnologia \cite{fragelli2010}. Um OA então, pode assumir vários formatos, desde uma apresentação textual, ao mais complexo sistema de simulação. Neste trabalho, os OAs se configuram como vídeos interativos, mecanismos hipermidiáticos que possibilitam ao estudante ter o controle do material de estudo, para que este possa concentrar sua atenção nos conteúdos segundo suas expectativas e controlar o fluxo de informação, apresentando materiais de forma dinâmica e adaptativa \cite{sturzbecher2013}. 
+
+Não é de hoje que as pesquisas indicam os aspectos vantajosos dos vídeos interativos. \cite{gaudreau1984} conduziram um estudo que tinha como objetivo a construção do Video Interactive Learning System (VILS), que utilizava um vídeo cassete e um monitor para a implantação de um sistema de educação que oferecesse suporte aos vídeos interativos. Como resultado, foi concluído à época que o uso dessa tecnologia era promissora já na fase inicial de aplicação.
+
+Um aspecto que diferencia os vídeos interativos dentre as formas já existentes e estabelecidas de ensino é o acesso mais rápido e simplificado ao material, fazendo com que o aprendiz construa sua própria versão de conhecimento após organizar as ideias passadas no ritmo de tempo que seja necessário para ele \cite{sturzbecher2013, zhang2005}, podendo controlar o fluxo da apresentação e o conteúdo exibido.
+
+Estudos recentes mostram que esses controles de tempo e conteúdo dados aos estudantes em um ambiente de vídeos são utilizados naturalmente no momento da aquisição de conhecimento. Um resultado que demonstra a necessidade que o aprendiz possui de adequar o material ao seu ritmo de aprendizado e sua capacidade cognitiva \cite{chandler2004, mayer2001}.
+
+Nesse sentido, a modelagem dos vídeos interativos está diretamente relacionada ao processo cognitivo do estudante, já que cada ponto de decisão pode levar ao sucesso ou fracasso do aprendizado esperado \cite{mayer2001,moreno2000}. Considerando que um vídeo interativo é formado por diversos fragmentos de vídeos interligados e que essa ligação é acessada por meio da estrutura de decisão dos vídeos interativos, existem dois modelos de implementação diferenciados para essa estrutura de decisão: o modelo hipermidiático e o de multimídia \cite{wetzel1994} .
+
+O modelo hipermidiático de vídeos interativos tenta trazer os conceitos de hipertexto e hipermídia para o âmbito dos vídeos interativos. Segundo a teoria, as ligações existentes nos vídeos devem estar vinculadas temporalmente aos conceitos âncora a que estão relacionadas. Isto é, caso exista um material sobre derivadas que seja de potencial interesse do estudante e, em um momento do vídeo o conceito de derivada é apresentado, nesse exato momento o link para o material deve ser disponibilizado. Dessa forma, o aprendiz pode acessar um material de determinado tema assim que este material for requerido para o ensino \cite{wetzel1994}.
+
+A princípio este modelo é promissor, pois garante ao estudante o acesso ao material de estudo sempre que necessário para o aprendizado. Entretanto, trabalhos recentes identificaram falhas no modelo que comprometiam a eficácia da aprendizagem, pois acarretavam na sobrecarga cognitiva do usuário com excesso de informação, requerendo seleções e avaliações além do processamento dos conteúdos ministrados \cite{zhang2005}.
+
+As heurísticas de multimídia se afirmaram como uma boa proposta para a modelagem de vídeos interativos por simplificarem o processo de decisão e diminuírem a carga cognitiva sobre o usuário no momento de aquisição da informação, agrupando os  hyperlinks sempre ao final de cada vídeo. 
+
+Dessa forma, o estudante tem a liberdade de acesso aos conteúdos possivelmente interessantes, mas sem a necessidade de selecionar e avaliar os hyperlinks enquanto assiste a um vídeo. Essas heurísticas são exploradas por \cite{mayer2014} quando define os princípios do aprendizado multimídia.
+
+
 \section{Sistemas de Hipermídias Adaptativas}
 
+As Hipermídias Adaptativas (HA) se tornaram ferramentas poderosas no desenvolvimento de sistemas de informação centrados no usuário, tendo como objetivo aumentar a funcionalidade das hipermídias por meio da personalização do conteúdo para cada indivíduo. Os Sistemas de Hipermídia Adaptativa (SHA) constroem um modelo dos objetivos, preferências e conhecimentos do usuário, e usa esse modelo como base para adaptação dos conteúdos segundo as necessidades desse usuário \cite{brusilovsky1996}.
 
+Os SHA podem ser utilizados em qualquer área de aplicação em que se espera um público com diferentes objetivos e conhecimentos e que procuram acessar diferentes partes da informação contida na página hipermídia e podem usar diferentes links para navegação. Para superar esse problema, esses sistemas atuam na modelagem do perfil do usuário para adaptação do conteúdo e dos links de navegação disponibilizados para cada usuário distinto \cite{brusilovsky1996, brusilovsky2003, fragelli2010}.
+
+Dessa forma, é possível identificar os dois âmbitos da adaptação proposta pelos SHA, a adaptação de conteúdo e a adaptação de navegação, explicados a seguir.
+
+\subsection{Adaptação de Conteúdo}
+
+A ideia por trás dos métodos de adaptação de conteúdo é adequar o conteúdo da página acessada por um usuário específico aos seus conhecimentos, objetivos e características naquele instante em que ocorreu o acesso.  Por exemplo, um estudante com maior qualificação pode receber informações mais aprofundadas e detalhadas enquanto um estudante pouco experiente pode receber explicações adicionais sobre o conteúdo \cite{brusilovsky1996}.
+
+Existem diversas técnicas levantadas por \cite{brusilovsky1996} sobre adaptação de conteúdo encontradas em variados sistemas utilizados em meados da década de 1990, algumas delas são: explicação adicional, explicação comparativa, explicação requerida, explicações variantes e textos condicionais.
+
+A explicação adicional é a mais popular dentre as técnicas e seu objetivo é esconder do usuário partes do conteúdo que podem não ser relevantes para o aprendizado do indivíduo. por exemplo, explicações aprofundadas podem ser escondidas de um estudante iniciante, pois essas não serão compreendidas pelo aprendiz e podem atrapalhar o processo de aprendizagem. Ou ainda, explicações adicionais normalmente requeridas por iniciantes podem ser escondidas de um estudante com mais graduação pois este não precisa mais dessas explicações.
+
+A explicação adicional é a mais popular dentre as técnicas e seu objetivo é esconder do usuário partes do conteúdo que podem não ser relevantes para o aprendizado do indivíduo. por exemplo, explicações aprofundadas podem ser escondidas de um estudante iniciante, pois essas não serão compreendidas pelo aprendiz e podem atrapalhar o processo de aprendizagem. Ou ainda, explicações adicionais normalmente requeridas por iniciantes podem ser escondidas de um estudante com mais graduação pois este não precisa mais dessas explicações.
+
+A técnica dos textos condicionais se baseia na divisão de toda a teoria sobre um conceito em vários pedaços, onde cada pedaço é associado a uma condição dependendo do nível de conhecimento do usuário, que só exibe aquele pedaço que satisfazer a condição. Essa técnica é bastante flexível, podendo englobar todas as outras citadas, desde que se escolha as condições certas e os conceitos mapeados no modelo do usuário \cite{brusilovsky1996}.
+
+Muito embora essas técnicas sejam em sua maioria aplicadas a sistemas textuais \cite{brusilovsky1996, fragelli2010}, não é difícil adaptá-las para um sistema de vídeos interativos, pois se os subvídeos forem separados e classificados quanto a ocultabilidade e prioridade, tem-se uma boa forma de definir quais podem ser ocultados ou não na apresentação de um conteúdo. Mesmo o método das explicações variantes pode ser alcançado, com a diferença de que este requer vários vídeos diferentes sobre um mesmo tópico apresentado. Isso se dá de forma semelhante ao método dos textos condicionais, mas com o uso de vídeos.
+
+\subsection{Adaptação de Navegação}
+
+A adaptação de navegação tem como objetivo ajudar o usuário a encontrar seus caminhos quando imerso na rede hipermídia. Essa adaptação é feita por meio da adequação da forma como os links para outros nodos da rede são apresentados, levando em consideração o modelo de usuário construído pelo sistema, sendo muito importante para evitar que o usuário se perca na rede de informações e não seja capaz de alcançar seus objetivos. Os métodos utilizados para a navegação adaptativa são a Condução Global, a Condução Local, Suporte à Orientação Global e Suporte à Orientação Local \cite{brusilovsky1996, palazzo2000}.
+
+A Orientação Global ocorre quando o usuário tem algum objetivo em um ou mais nodos da rede e o sistema o ajuda a alcançar essa informação através do caminho mais curto, com possíveis desvios. A Condução Global é o objetivo inicial dos sistemas de recuperação de informação e muito útil em sistemas de ajuda on-line \cite{brusilovsky1996, palazzo2000}.
+
+Tendo em vista o contexto educacional e considerando que para um estudante existe apenas um objetivo global, que é o do aprendizado, os sistemas adaptativos precisam captar a dinâmica da aprendizagem do estudante com a finalidade de acelerar ou retardar tópicos segundo essa dinâmica. Essa adaptação pode ser feita por meio da quantização da rede de informações \cite{palazzo2000}, como proposto neste trabalho.
+
+A Orientação Global ocorre quando o usuário tem algum objetivo em um ou mais nodos da rede e o sistema o ajuda a alcançar essa informação através do caminho mais curto, com possíveis desvios. A Condução Global é o objetivo inicial dos sistemas de recuperação de informação e muito útil em sistemas de ajuda on-line \cite{brusilovsky1996, palazzo2000}.
+
+Tendo em vista o contexto educacional e considerando que para um estudante existe apenas um objetivo global, que é o do aprendizado, os sistemas adaptativos precisam captar a dinâmica da aprendizagem do estudante com a finalidade de acelerar ou retardar tópicos segundo essa dinâmica. Essa adaptação pode ser feita por meio da quantização da rede de informações \cite{palazzo2000}, como proposto neste trabalho.
 
 \section{Quantização de Redes por Nodos}
 
