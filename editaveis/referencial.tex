@@ -114,4 +114,49 @@ Tendo em vista o contexto educacional e considerando que para um estudante exist
 
 \section{Quantização de Redes por Nodos}
 
+Antes de se especificar o conceito da QRN, é necessário conhecer as teorias da quantização de redes. Palazzo (2000) define uma rede de informações como sendo uma tripla formada pelos nodos, suas ligações e o conjunto de propriedades específicas da rede. Os nodos representam unidades estruturais da rede e neste trabalho serão apresentados como vídeos interativos; as ligações são os links que permitem a navegação entre esses vídeos interativos.
 
+Quantizar uma rede nada mais é do que valorar as ligações entre nodos, dessa forma é possível saber quais nodos estão mais próximos, ou são mais relevantes entre si. Existem duas formas de se quantizar uma rede: a quantização retroativa e a proativa. 
+
+Na quantização retroativa, o acesso a um link da rede promove um acréscimo ao valor da ligação. Esse valor atribuído a uma ligação é chamado de potencial de ativação, pois tenta aproximar por acessos anteriores o potencial que esse link tem de ser acessado novamente (PALAZZO, 2000).
+
+A quantização proativa é um processo complementar, no qual são feitas inferências sobre a rede por meio das operações de fechamento, tendo como base a noção matemática de fecho e suas principais classificações: cíclico (fig. \ref{fig:subop1}), transitivo (fig. \ref{fig:subop2}), sobrejetor (fig. \ref{fig:subop3}) e sobrejetor inverso (fig. \ref{fig:subop4}) \cite{palazzo2000, fragelli2010}. Por meio dessas inferências é possível antecipar possíveis estados futuros da rede, induzindo o surgimento de novas configurações.
+
+\begin{figure}
+	\begin{subfigure}{.25\textwidth}
+  		\centering
+  		\includegraphics[width=.9\linewidth]{figuras/opfecho_a.eps}
+  		\caption{cíclico}
+  		\label{fig:subop1}
+	\end{subfigure}%
+		\begin{subfigure}{.25\textwidth}
+  		\centering
+  		\includegraphics[width=.9\linewidth]{figuras/opfecho_b.eps}
+  		\caption{transitivo}
+  		\label{fig:subop2}
+	\end{subfigure}%
+		\begin{subfigure}{.25\textwidth}
+  		\centering
+  		\includegraphics[width=.9\linewidth]{figuras/opfecho_c.eps}
+  		\caption{sobrejetor}
+  		\label{fig:subop3}
+	\end{subfigure}%
+		\begin{subfigure}{.25\textwidth}
+  		\centering
+  		\includegraphics[width=.9\linewidth]{figuras/opfecho_d.eps}
+  		\caption{sobrejetor inverso}
+  		\label{fig:subop4}
+	\end{subfigure}
+	\caption{Operações de fecho}
+	\label{fig:opfecho}
+\end{figure}
+
+Com base nessas operações, foram definidos operadores capazes de promover um auto aprendizado da rede. \cite{bollen1996} ratificaram essa utilização em uma rede de informações distribuída com múltiplos usuários. Os operadores também foram utilizados em uma rede hipermídia na qual foi incluída a operação de degradação da rede, de modo que os acessos mais recentes tinham maior peso em favor de uma melhor navegação adaptativa \cite{palazzo2000}.
+
+Essas teorias possuem um grande espaço de aplicação em auto organização de sistemas dinâmicos e são utilizadas em diversos campos como: cibernética, biologia, termodinâmica, matemática e também evolução da linguagem.
+
+O grande problema dessa abordagem quando aplicada a ambientes de ensino é que, não há como relacionar o processo de aprendizagem de um indivíduo ao comportamento comum de usuários em uma rede, pois cada estudante possui objetivos diferentes ou capacidades cognitivas diferentes, dentre vários outras características importantes no processo de ensino e aprendizagem que são únicos para cada pessoa.
+
+A QRN então surge como uma possibilidade de quantização que leve em consideração apenas as informações contidas nos nodos para se gerar a quantização da rede, possibilitando sua utilização em um sistema de cursos on-line \cite{fragelli2010}.
+
+Para se calcular o potencial de ativação entre os nodos da rede, é utilizada a menor distância entre o nodo atual e os demais. No caso de uma rede unidimensional de fluxo crescente, se o nodo atual é o nodo cinco e se sua avaliação for satisfatória, o estudante será direcionado para o nodo seis, caso a avaliação seja insatisfatória, o estudante será direcionado para o nodo 4. Isso exemplifica a utilização da menor distância para se inferir qual o melhor caminho a ser seguido, contudo ainda falta especificar os conceitos, variáveis e condições para se  quantizar a rede, explorados nos tópicos a seguir.
