@@ -169,3 +169,137 @@ Em contrapartida, existem conceitos que abordam um mesmo assunto mas de formas d
 Essas teorias são de maior importância quando se utiliza um Sistema Tutor Inteligente, pois este atua na seleção de conteúdos para a confecção do material a ser exibido pelo sistema \cite{fragelli2010}, exigindo uma organização dos conceitos dependentes. Já no caso deste trabalho, o material estará pronto a partir do momento que for criado pelo professor autor, não requerendo uma seleção prévia. Entretanto, os blocos coesos podem ser explorados no momento da confecção do material, por meio da criação de apenas uma ligação entre um nodo e outro, dado que só deve existir um caminho possível entre os conceitos dependentes.
 
 A hierarquia de blocos é também abordada no momento da confecção dos vídeos interativos, mas representa um fator importante para a adaptação da navegação da rede. Uma boa construção de vídeo interativo é necessária para se alcançar bons resultados da adaptação no que diz respeito a seleção de um bloco dentre os existentes na hierarquia.
+
+\subsection{Avaliação e Confiabilidade}
+
+A quantização da rede está diretamente relacionada à avaliação e à confiabilidade dos nodos que a compõem, o cálculo para ambos os valores é feito em duas etapas: direta e indireta. A avaliação direta ocorre quando um estudante responde uma questão do nodo em que se encontra. Isto é, o estudante é avaliado pelo sistema por meio de sua resposta, essa avaliação direta é sucedida pela avaliação indireta do nodo, que corresponde as operações de fecho, e representa os processos de inferência sobre a rede para tentar prever estados futuros. O resultado A da avaliação do nodo é dado pela média ponderada das notas das avaliações direta e indireta, como segue:
+
+\begin{equation}
+	A = C_{0}A_{0} + (1 - C_{0})A_{0M}
+\end{equation}
+
+Para o cálculo da avaliação indireta, utiliza-se a nota da avaliação do nodo de origem \(A_{1}\) e uma constante \( k_{a},(0 < k_{a} < 5) \), que representa o grau de liberdade para se alterar a nota \(A_{0}\) do nodo. Como na fórmula:
+
+\begin{equation}
+	A_{0M} =  A_{0} + (A_{1} - A_{0})\frac{k_{a}}{5}
+\end{equation}
+
+O valor da avaliação direta é a média aritmética das notas das questões respondidas do nodo. Por exemplo, se um nodo da rede possui sete questões, o estudante respondeu apenas quatro e tirou nota seis em duas delas e oito nas outras duas, a nota da avaliação direta então será sete. As outras três questões que não foram respondidas não influenciam diretamente o cálculo da avaliação, mas servem para o cálculo da confiabilidade. A avaliação final calculada e finalmente dada por:
+
+\begin{equation}
+	 A_{0}=C_{0} A_{0} + (1- C_{0}) \bigg( A_{0}+(A_{1}-A_{0}) \frac{k_{a}}{5} \bigg)
+\end{equation}
+
+A confiabilidade \(C_{0}\) do nodo é calculada também por meio de uma média ponderada das duas etapas, direta e indireta. Como mostra a equação:
+
+\begin{equation}
+	C_{0}= \frac{(n_a+1) C_0+C_{0M}}{n_a+2}
+\end{equation}
+
+Em que \(n_a\) é o número de questões respondidas pelo usuário, \(C_0\) representa a confiabilidade anterior do nodo, \(C_{0M}\) é a confiabilidade da avaliação indireta proposta, que deve aumentar nos casos em que \(A_0\) for um valor próximo de \(A\) e diminuir nos casos em que \(A_0\) e \(A\) forem muito distantes.
+
+\begin{equation}
+	\rho_{KR21} = \frac{k}{(k-1)} \bigg(1- \frac{M(k-M)}{ks_{xx}^{2}} \bigg) 
+\end{equation}
+
+Na qual, \(k\) é o número de questões, \(M\) é a média dos escores obtidos pelos alunos e \(s_{xx}^{2}\) é a variância corrigida em torno da média, dada por:
+
+\begin{equation}
+	s_{xx}^{2} =  \frac{\sum{x^2}}{n-1}
+\end{equation}
+
+Em que \(x\) representa a diferença entre o escore do estudante e a média dos estudantes para aquela questão. Nesse sentido, é possível ver que as questões que não foram respondidas terão um valor \(x\) muito alto, o que influencia negativamente no resultado confiabilidade.
+	
+Da mesma forma, para o cálculo da confiabilidade da avaliação indireta, a distância entre os escores do estudante deve ser levada em consideração, já que, se houver uma variação muito grande entre duas avaliações, isso implica em uma confiabilidade baixa. Além disso, o próprio valor da confiabilidade do nodo de origem influencia o cálculo da nova confiabilidade, como é mostrado abaixo:
+
+\begin{equation}
+	C_{0M} = C_1 (1-0,1|A_0 -  A_1 |) 
+\end{equation}
+
+Para o cálculo final da confiabilidade, tem-se a seguinte fórmula:
+
+\begin{equation}
+	C_0 = \frac{(n_a+1) C_0 + C_1 (1 - 0,1|A_0 - A_1|)}{ n_a+2 }
+\end{equation}
+
+\subsection{Influência Temporal}
+
+Para que a rede se adeque aos acessos atuais dos nodos, é realizado um decréscimo percentual da avaliação de um nodo quando um aluno não o acessa durante determinado período de tempo. A ideia é reduzir o grau de interferência das avaliações passadas sobre uma nova retomada do curso, quando o aluno passa algum tempo sem acessá-lo. Esse cálculo é feito da seguinte forma:
+
+\begin{equation}
+	A=(1 - p_e)A_0 
+\end{equation}
+
+\subsection{Quantização das Ligações entre Nodos}
+
+Como dito antes, a quantização da rede é gerada a partir da menor distância entre os nodos da rede. Esse cálculo é feito levando em consideração o campo tridimensional. Em um primeiro momento, todos os nodos da rede estão em ordem, em \(z=0\) e \(N4\) sendo o nodo atual. O exemplo considera três alterações de nível dos nodos da rede que se referem a blocos coesos, direção e avaliação.
+
+Primeiramente o nodo \(N4\) é colocado em um nível superior da rede de modo que os outros nodos não ultrapassem o nodo atual após as modificações de suas posições (Fig. \ref{fig:subnodos1} ). Posteriormente, todos os nodos que pertencem ao mesmo bloco coeso de \(N4\) sofrem uma elevação de nível (Fig. \ref{fig:subnodos2} ). 
+
+\begin{figure}
+	\begin{subfigure}{.5\textwidth}
+  		\centering
+  		\includegraphics[width=.9\linewidth]{figuras/nodos1.eps}
+  		\caption{Deslocamento do nodo atual}
+  		\label{fig:subnodos1}
+	\end{subfigure}
+	\begin{subfigure}{.5\textwidth}
+  		\centering
+  		\includegraphics[width=.9\linewidth]{figuras/nodos2.eps}
+  		\caption{Desocamento dos blocos coesos}
+  		\label{fig:subnodos2}
+	\end{subfigure}
+	\begin{subfigure}{.5\textwidth}
+  		\centering
+  		\includegraphics[width=.9\linewidth]{figuras/nodos3.eps}
+  		\caption{Deslocamento segundo a direção}
+  		\label{fig:subnodos3}
+	\end{subfigure}
+	\begin{subfigure}{.5\textwidth}
+  		\centering
+  		\includegraphics[width=.9\linewidth]{figuras/nodos4.eps}
+  		\caption{Deslocamento segunto as avaliações}
+  		\label{fig:subnodos4}
+	\end{subfigure}
+	\caption{Processo de quantização da rede}
+	\label{fig:nodos}
+\end{figure}
+
+Considerando neste exemplo que o estudante tenha obtido um escore superior ou igual ao considerado satisfatório, todos os nodos posteriores ao atual sofrem uma elevação de nível (Fig. \ref{fig:subnodos3}), pois a direção da avaliação indica um avanço positivo. O próximo passo é reduzir proporcionalmente o nível dos nodos com base nas suas respectivas avaliações e confiabilidades (Fig. \ref{fig:subnodos4}).
+
+Com base na nova configuração obtida, basta fazer o cálculo da menor distância entre o nodo atual e os demais para se obter a quantização da rede, segundo a fórmula da menor distância para pontos tridimensionais. Sendo assim, podemos fazer a análise também para a distância ao quadrado, como mostrado:
+
+\begin{equation}
+	d^2 = (x_a-x_i)^2 +(y_a-y_i)^2 + (z_a-z_i)^2 
+\end{equation}
+
+Essa teoria pode ser utilizada então para redes \(n\)-dimensionais sem prejuízo, pois \(d^2\) é o quadrado da norma euclidiana do vetor distância entre dois nodos da rede \cite{fragelli2010}.
+
+Para que aconteça a quantização da rede, é preciso definir os coeficientes de alteração do nível z e de posicionamento \((x_a,y_a)\) para os nodos, com a finalidade de gerar uma modelagem flexível para diferentes modelos pedagógicos. \cite{fragelli2010} ratifica essa afirmação por meio da apresentação de duas propostas de redes quantizadas: behaviorista e cognitivista.
+
+\subsection{Rede Behaviorista Quantizada}
+
+Para uma rede behaviorista, os nodos estão alinhados em x e são dados pelos valores definidos pelo professor ao compor seu curso. Desse modo, a quantização está relacionada à análise de z para o posicionamento dos nodos:
+
+\begin{equation}
+	(x,y,z)=(x_a,0,\sum_{i=1}^{m} k_i ) 
+\end{equation}
+
+Fragelli propõe a utilização de três coeficientes \(k_i\) para a quantização da rede:
+
+\begin{itemize}
+	\item \(k_1\) Blocos Coesos;
+ 	\item \(k_2\) Direção e Expertise;
+ 	\item \(k_3\) Avaliação e Confiabilidade.
+\end{itemize}
+
+O coeficiente \(k_1\) avalia se um nodo faz parte do mesmo bloco coeso do nodo atual \(N_a\) e define um limite superior de modo que os nodos externos ao bloco coeso não fiquem impedidos de serem acessados.
+
+\[
+	(k_1)_i =	\left\{
+	\begin{array}{ll}
+	    \, p_b \sum_{j=1}^{k} N_j & \quad \text{ se } N_j \in \text{blocos coesos de } N_a  \\
+		\, 0  & \quad \text{ c.c. } \\
+  	\end{array}
+  	\right.
+\]
