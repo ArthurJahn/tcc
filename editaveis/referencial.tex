@@ -234,7 +234,7 @@ Para que a rede se adeque aos acessos atuais dos nodos, é realizado um decrésc
 
 Como dito antes, a quantização da rede é gerada a partir da menor distância entre os nodos da rede. Esse cálculo é feito levando em consideração o campo tridimensional. Em um primeiro momento, todos os nodos da rede estão em ordem, em \(z=0\) e \(N4\) sendo o nodo atual. O exemplo considera três alterações de nível dos nodos da rede que se referem a blocos coesos, direção e avaliação.
 
-Primeiramente o nodo \(N4\) é colocado em um nível superior da rede de modo que os outros nodos não ultrapassem o nodo atual após as modificações de suas posições (Fig. \ref{fig:subnodos1} ). Posteriormente, todos os nodos que pertencem ao mesmo bloco coeso de \(N4\) sofrem uma elevação de nível (Fig. \ref{fig:subnodos2} ). 
+Primeiramente o nodo \(N4\) é colocado em um nível superior da rede de modo que os outros nodos não ultrapassem o nodo atual após as modificações de suas posições (Fig. \ref{fig:subnodos1} ). Posteriormente, todos os nodos que pertencem ao mesmo bloco coeso de \(N4\) sofrem uma elevação de nível (Fig. \ref{fig:subnodos2} ).
 
 \begin{figure}
 	\begin{subfigure}{.5\textwidth}
@@ -298,8 +298,85 @@ O coeficiente \(k_1\) avalia se um nodo faz parte do mesmo bloco coeso do nodo a
 \[
 	(k_1)_i =	\left\{
 	\begin{array}{ll}
-	    \, p_b \sum_{j=1}^{k} N_j & \quad \text{ se } N_j \in \text{blocos coesos de } N_a  \\
+	    \, p \sum_{j=1}^{k} N_j & \quad \text{ se } N_j \in \text{blocos coesos de } N_a  \\
 		\, 0  & \quad \text{ c.c. } \\
   	\end{array}
   	\right.
 \]
+
+Nesta equação é possível verificar que \(N_a\) pode pertencer a mais de um bloco coeso e que o coeficiente \(k_1\) do nodo \(N_i\) é o somatório dos elementos dos blocos coesos que contenham \(N_a\) e \(N_i\). Para o escopo deste trabalho, o professor deverá se encarregar de gerar esse coeficiente por meio das distâncias entre os nodos no momento da criação de um curso. Entretanto, este conceito é importante para se entender a possibilidade de adequação da rede para a inserção de um agente pedagógico que possa gerar esses coeficientes analisando a interação do usuário na rede. 
+
+O coeficiente \(p\) está associado ao objetivo do aluno ao acessar um curso, se ele fizer parte do público-alvo para qual o curso foi designado, este aluno poderá seguir o planejamento normal do curso, acessando ordenadamente os nodos.
+
+O coeficiente \(k_2\) é calculado segundo a avaliação do nodo atual \(N_a\) e o fluxo normal indicado pelo autor. Para um nodo \(N_i\), o valor de \(k_2\) é dado por:
+
+\[
+	(k_2)_i =	\left\{
+	\begin{array}{ll}
+	    \, v 	& \quad \text{ se }  A_{N_a} \ge  p_b\varepsilon_{N_a}  \text{ e } x_{N_j} > x_{N_a}  \\
+	    \, v 	& \quad \text{ se }  A_{N_a} < p_b\varepsilon_{N_a}  \text{ e } x_{N_j} < x_{N_a}  \\
+	    	\, 0  	& \quad \text{ c.c. } \\
+  	\end{array}
+  	\right.
+\]
+
+Para determinação do valor de v, deve-se verificar o valor necessário para provocar uma tendência de seguir o fluxo normal do curso, para isso é necessário treinar a rede, semelhante ao processo de treinamento das redes neurais. O coeficiente \(p_b\) indica qual o percentual da expertise \(\varepsilon_{N_a}\) seria suficiente para uma avaliação satisfatória do nodo.
+
+O coeficiente \(k_3\) tem o objetivo de diminuir a chance de um nodo com avaliação satisfatória e confiabilidade alta ser acessado. Sendo assim, este coeficiente é dependente dos valores de \(k_1\) e \(k_2\) calculados anteriormente. A solução proposta por Fragelli envolve a relação linear:
+
+
+\[
+	(k_3)_i = - \min \Bigg(  \frac{\min( \frac{C_{N_j}}{C_0} , 1)A_{N_j}}{p_b\varepsilon_{N_j}} , 1  \Bigg)(k_1 + k_2)
+\]
+
+Desse modo, se um nodo possui avaliação satisfatória e confiabilidade superior à confiabilidade mínima \(C_0\) o valor de \(k_3\) será \(-(k_1+k_2)\) e o nodo retornará para \(z=0\). Em qualquer outra situação, a redução será proporcional aos valores da avaliação e da confiabilidade do nodo \(N_j\).
+
+\subsection{Rede Ausubeliana Quantizada}
+
+No caso de uma rede levando em consideração a teoria de Ausubel, são utilizados os mesmos coeficientes de nível da rede behaviorista, com uma modificação que é a utilização das posições dos nodos no mapa conceitual construído pelo professor. Assim, a distribuição espacial dos nodos no momento da construção do curso é bastante útil na quantização da rede que ficaria:
+
+\begin{equation}
+	(x,y,z)=(x_a,y_a,\sum_{i=1}^{m} k_i ) 
+\end{equation}
+
+Onde \((x_a,y_a)\) representam a posição do nodo no mapa conceitual da rede. O grande avanço desta proposta é a possibilidade da modificação do mapa conceitual para cada estudante distinto que acessa a rede, suas características influenciam também a disposição dos elementos. Uma grande discussão sobre o uso dos mapas conceituais é que o mapa conceitual construído pelo professor nem sempre representa o mapa que seria feito pela estrutura cognitiva do estudante, por isso é importante o desenvolvimento de um sistema que permita a adaptação do mapa conceitual segundo as impressões do estudante.
+
+Com base no aporte teórico educacional apresentado, é necessário compreender também os métodos e técnicas do estudo em engenharia de software que proporcionem meios suficientes para que o sistema proposto possa ser desenvolvido, sendo estes apresentados a seguir.
+
+\section{Arquitetura de software}
+
+Ao passo que os sistemas de software se desenvolvem em tamanho e complexidade, os problemas de projeto vão além dos algoritmos e estruturas de dados: projetar e especificar a organização geral do software surge como um novo problema. Falhas estruturais incluindo mecanismo global de controle; protocolos de comunicação, sincronização e acesso de dados; distribuição física; composição dos elementos do projeto; escalabilidade e performance; e seleção dentre as alternativas de design. Esse é o nível arquitetural do projeto de software \cite{shaw1996}. 
+
+Este nível de projeto de software possui um grande conjunto de trabalho, decisões sobre padrões de projeto, utilização de paradigmas, frameworks e modelos arquiteturais que são de suma importância para redução de retrabalhos e aumento da qualidade e manutenabilidade do produto final \cite{krasner1988}.
+
+O modelo arquitetural MVC (do inglês \textit{Model - View - Controller}) é um estilo fundamentado no modelo de arquitetura em camadas, primeiramente idealizado por \cite{reenskaug1979} em 1978 para um projeto específico chamado \textit{Smalltalk}. Tendo como objetivo separar o modelo de negócio abordado no sistema (camada \textit{Model}), da camada de interface com o usuário (\textit{View}), permitindo que esse modelo possa ser exibido de inúmeras e diferentes formas sem ter conhecimento de quem o está exibindo \cite{krasner1988}. A fig. \ref{fig:mvc} ilustra o funcionamento da arquitetura MVC e as interfaces entre camadas. 
+
+
+\begin{figure}[h!]
+	\centering
+  	\includegraphics[width=.9\linewidth]{figuras/mvc.eps}
+  	\caption{Model - View - Controller}
+	\small{Fonte: \cite{krasner1988}}
+  	\label{fig:mvc}
+\end{figure} 
+
+Para manter todas as \textit{Views} e \textit{Controllers} atualizadas segundo o estado da \textit{Model}, foi definida também a noção de dependência. Os objetos do tipo \textit{Controller} e \textit{View} são registrados em uma lista de dependentes na \textit{Model}, e quando ocorre alguma mudança no estado do modelo, estes são avisados através de troca de mensagens \cite{krasner1988}. 
+
+Anos depois, no final da década de 1980, o paradigma foi publicado como um padrão arquitetural para sistemas \textit{web}, no sentido de que é interessante que o modelo não conheça a forma de apresentação, já que uma página pode ser exibida em diferentes dispositivos com diferentes resoluções e proporções de tela, e que deve se comportar de forma diferente sem comprometer o bom funcionamento do sistema \cite{krasner1988}. Se tornando uma forte tendência para estas aplicações desde então.
+
+Esta estrutura arquitetural foi utilizada inicialmente para renderização \textit{server-side} \cite{shabaitah2014}, ou seja, o processo digital sobre a página é feito no servidor que provê o serviço \textit{web}, sendo esta necessária, já que no início da década de 90, poucos computadores pessoais possuiam capacidade para executar o processamento das páginas depois de recebidas e que ainda hoje existem dispositivos com pouca capacidade de processamento que também fazem consultas a internet e dependem do servidor para renderização, como equipamentos de e-books e alguns smartphones\cite{baker2006}. 
+
+Com o desenvolvimento de navegadores mais robustos e com funcionalidades diversas, construir aplicações que dependem de renderização no cliente se tornou não somente factivel, mas bastante popular \cite{google2015}. Nesse sentido o estilo arquitetural MVC para aplicações \textit{web} tem sofrido consideráveis mudanças, de modo que camadas da aplicação antes existentes apenas nos servidores passaram a executar papéis importantes também no cliente \cite{google2015}.
+
+\begin{figure}[h!]
+	\centering
+  	\includegraphics[width=.9\linewidth]{figuras/jsdata.eps}
+  	\caption{transferências e requisições JavaScript}
+	\small{Fonte: \cite{google2015}}
+  	\label{fig:jsdata}
+\end{figure}
+
+A figura \ref{fig:jsdata} mostra o crescimento da popularidade de arquivos \textit{JavaScript} em páginas \textit{web}, linguagem mais comumente usada para aplicações que são executadas no lado do cliente.
+
+\section{Testes de Software}
+
