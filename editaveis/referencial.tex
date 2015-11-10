@@ -376,9 +376,43 @@ Com o desenvolvimento de navegadores mais robustos e com funcionalidades diversa
   	\label{fig:jsdata}
 \end{figure}
 
-A figura \ref{fig:jsdata} mostra o crescimento da popularidade de arquivos \textit{JavaScript} em páginas \textit{web}, linguagem mais comumente usada para aplicações que são executadas no lado do cliente.
+A figura \ref{fig:jsdata} mostra o crescimento da popularidade de arquivos \textit{JavaScript} em páginas \textit{web}, linguagem mais comumente usada para aplicações que são executadas no lado do cliente e que podem também gerenciar renderização. 
+
+Com base no que foi apresentado, é possível encontrar na literatura várias formas de implementar uma arquitetura MVC com renderização no servidor, no cliente ou em ambos. A figura \ref{fig:mvc} a seguir ilustra alguns exemplos genéricos encontrados em ferramentas bastante utilizadas atualmente \cite{mejia2011, petitit2014, quinn2015}. 
+
+Uma arquitetura \textit{web} tradicional, utiliza em geral renderização no servidor e retorna a página pronta para o cliente que interage por meio de controles providos pelo navegador, redirecionando as requisições ao servidor, que executa o processamento e retorna uma nova página ao cliete após a resposta à requisição ser construída. Para essa estrutura, a cada ação do usuário, uma nova requisição é criada e existe uma latência considerável entre executar a requisição e receber a resposta novamente no cliente \cite{mejia2011}.
+
+Para uma arquitetura no cliente ou uma arquitetura mista, existem \textit{frameworks} que provêm recursos suficientes para persistencia e controle no cliente. No caso da arquitetura mista, podem existir APIs no servidor implementados em diversas linguagens para gerenciar requisições e envios de dados ao cliente, além da possibiliade de responderem uma página renderizada \cite{ petitit2014, quinn2015}. Já para aplicações que possuem um MVC completo no cliente, o servidor pode servir meramente como um banco de dados, que provê as informações necessárias ao cliente por meio de uma API publish subscribe \cite{quinn2015}.
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}{.31\textwidth}
+  		\centering
+  		\includegraphics[width=.9\linewidth]{figuras/servidor.eps}
+  		\caption{\textit{server-side}}
+  		\label{fig:submvc1}
+	\end{subfigure}
+	\begin{subfigure}{.31\textwidth}
+  		\centering
+  		\includegraphics[width=.9\linewidth]{figuras/misto.eps}
+  		\caption{misto}
+  		\label{fig:submvc2}
+	\end{subfigure}
+	\begin{subfigure}{.31\textwidth}
+  		\centering
+  		\includegraphics[width=.9\linewidth]{figuras/cliente.eps}
+  		\caption{ \textit{client-side}}
+  		\label{fig:submvc3}
+	\end{subfigure}
+	\caption{Estilos Aquiteturais MVC}
+	\label{fig:mvc}
+\end{figure}
+
+Apesar de suas diferenças e semelhanças, cada modelo possui vantagens e desvantagens. No caso de renderização no servidor, uma grande vantagem é a independência do cliente, que caso possua pouco capacidade de processamento, conseguirá executar a aplicação sem grandes problemas. Já para aplicações com renerização no cliente, é necessário que o dispositivo possua capacidade suficiente para executar o aplicação, o que a torna mais dependente dos dispositivos. Apesar disso, aplicações com renderização no cliente possuem geralmente uma interface mais rica e usável \cite{Ubl2015}. No caso deste trabalho, é proposta uma arquitetura mista, detalhada no capítulo 3 de desenvolvimento.
 
 \section{Testes de Software}
+
+
 
 \section{Metodologia \textit{Scrum}}
 
