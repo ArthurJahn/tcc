@@ -347,7 +347,7 @@ Com base no aporte teórico educacional apresentado, é necessário compreender 
 
 Ao passo que os sistemas de software se desenvolvem em tamanho e complexidade, os problemas de projeto vão além dos algoritmos e estruturas de dados: projetar e especificar a organização geral do software surge como um novo problema. Falhas estruturais incluindo mecanismo global de controle; protocolos de comunicação, sincronização e acesso de dados; distribuição física; composição dos elementos do projeto; escalabilidade e performance; e seleção dentre as alternativas de design. Esse é o nível arquitetural do projeto de software \cite{shaw1996}. 
 
-Este nível de projeto de software possui um grande conjunto de trabalho, decisões sobre padrões de projeto, utilização de paradigmas, frameworks e modelos arquiteturais que são de suma importância para redução de retrabalhos e aumento da qualidade e manutenabilidade do produto final \cite{krasner1988}.
+Este nível de projeto de software possui um grande conjunto de trabalho, decisões sobre padrões de projeto, utilização de paradigmas, \textit{frameworks} e modelos arquiteturais que são de suma importância para redução de retrabalhos e aumento da qualidade e manutenabilidade do produto final \cite{krasner1988}.
 
 O modelo arquitetural MVC (do inglês \textit{Model - View - Controller}) é um estilo fundamentado no modelo de arquitetura em camadas, primeiramente idealizado por \cite{reenskaug1979} em 1978 para um projeto específico chamado \textit{Smalltalk}. Tendo como objetivo separar o modelo de negócio abordado no sistema (camada \textit{Model}), da camada de interface com o usuário (\textit{View}), permitindo que esse modelo possa ser exibido de inúmeras e diferentes formas sem ter conhecimento de quem o está exibindo \cite{krasner1988}. A fig. \ref{fig:mvc} ilustra o funcionamento da arquitetura MVC e as interfaces entre camadas. 
 
@@ -408,11 +408,30 @@ Para uma arquitetura no cliente ou uma arquitetura mista, existem \textit{framew
 	\label{fig:mvc}
 \end{figure}
 
-Apesar de suas diferenças e semelhanças, cada modelo possui vantagens e desvantagens. No caso de renderização no servidor, uma grande vantagem é a independência do cliente, que caso possua pouca capacidade de processamento, conseguirá executar a aplicação sem grandes problemas. Já para aplicações com renerização no cliente, é necessário que o dispositivo seja veloz o suficiente para executar a aplicação. Apesar disso, aplicações com renderização no cliente possuem geralmente uma interface mais rica e usável \cite{Ubl2015}. No caso deste trabalho, é proposta uma arquitetura mista, detalhada no capítulo 3 sobre o desenvolvimento.
+Apesar de suas diferenças e semelhanças, cada modelo possui vantagens e desvantagens. No caso de renderização no servidor, uma grande vantagem é a independência do cliente, que caso possua pouca capacidade de processamento, conseguirá executar a aplicação sem grandes problemas. Já para aplicações com renderização no cliente, é necessário que o dispositivo seja veloz o suficiente para executar a aplicação. Apesar disso, aplicações com renderização no cliente possuem geralmente uma interface mais rica e usável \cite{Ubl2015}. No caso deste trabalho, é proposta uma arquitetura mista, detalhada no capítulo 3 sobre o desenvolvimento.
 
-\section{Testes de Software}
+Independente de onde aconteça a renderização, o MVC possui vantagens como possibilidade de reuso de código, separação entre níveis conseituais e menor acoplamento entre as camadas, possibilitando maior manutenabilidade e qualidade do código produzido \cite{krasner1988}. Entretanto, a qualidade do \textit{software} não é medida unicamente por sua arquitetura, testes são meios menos abstratos de se garantir a qualidade do software desenvolvido. A seguir, descorre-se sobre estratégias e tipos de testes encontrados na literatura.
 
+\section{Testes de \textit{Software}}
 
+O processo de teste de software procura determinar se um sistema atinge suas especificações e funciona corretamente no ambiente para o qual foi projetado, tendo como objetivo identificar falhas durante o desenvolvimento para que possam ser corrigidas antes da entrega do produto final  \cite{neto2005}. 
+
+Para entender o conceito de testes, é necessário compreender a diferença entre defeito, erro e falha. Um defeito se encontra no meio físico, é uma instrução de um passo, ou deifinição de dados incorreta. Um erro está no âmbito da informação, na construção de um software diferente do que foi especificado, sendo qualquer passo intermediário diferente do que é esperado. Uma falha, por sua vez, é o comportamento inesperado que afeta diretamente o usuário final da aplicação, podendo inviabilizar o uso da aplicação \cite{ieee1990}, como ilustra a figura \ref{fig:erro}. 
+
+\begin{figure}[h!]
+	\centering
+  	\includegraphics[width=.9\linewidth]{figuras/erro.eps}
+  	\caption{\textit{Defeito \(\times\) Erro \(\times\) Falha}}
+  	\label{fig:erro}
+\end{figure}
+
+Testes podem ser projetados de dois pontos de vista: estrutural ou funcional. Os testes funcionais ignoram o mecanismo interno de execução e se concentram nos resultados gerados com o propósito de encontrar não conformidades com a especificação da funcionalidade. Testes funcionais são direcionados ao usuário e devem se preocupar unicamente com a funcionalidade. Já os testes estruturais analisam o funcionamento interno em diferentes níveis, podendo envolver todo o sistema, ou apenas partes dele. Para \cite{naik2008}, existem 3 níveis de testes estruturais, sendo eles de unidade, integração e sistema \cite{naik2008}.
+
+Testes unitários são utilizados para testar de forma izolada funções, métodos ou classes. Após garantir que as unidades funcionam de forma satisfatória, os módulos são agrupados para se construir sub-sistemas maiores que são testados por meio das técnicas de teste de integração. Testes unitários são importantes pois, uma vez que o código está integrado a outros módulos, encontrar a causa de uma falha, se torna mais difícil \cite{naik2008}.
+
+  
+
+ 
 
 \section{Metodologia \textit{Scrum}}
 
