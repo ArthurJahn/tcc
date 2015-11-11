@@ -416,24 +416,27 @@ Independente de onde aconteça a renderização, o MVC possui vantagens como pos
 
 O processo de teste de software procura determinar se um sistema atinge suas especificações e funciona corretamente no ambiente para o qual foi projetado, tendo como objetivo identificar falhas durante o desenvolvimento para que possam ser corrigidas antes da entrega do produto final  \cite{neto2005}. 
 
-Para entender o conceito de testes, é necessário compreender a diferença entre defeito, erro e falha. Um defeito se encontra no meio físico, é uma instrução de um passo, ou deifinição de dados incorreta. Um erro está no âmbito da informação, na construção de um software diferente do que foi especificado, sendo qualquer passo intermediário diferente do que é esperado. Uma falha, por sua vez, é o comportamento inesperado que afeta diretamente o usuário final da aplicação, podendo inviabilizar o uso da aplicação \cite{ieee1990}, como ilustra a figura \ref{fig:erro}. 
+Para entender o conceito de testes, é necessário compreender a diferença entre defeito, erro e falha. Um defeito se encontra no meio físico, é uma instrução de um passo, ou deifinição de dados incorreta. Um erro está no âmbito da informação, na construção de um software diferente do que foi especificado, sendo qualquer passo intermediário diferente do que é esperado. Uma falha, por sua vez, é o comportamento inesperado que afeta diretamente o usuário final da aplicação, podendo inviabilizar o uso do sistema \cite{ieee1990}, como ilustra a figura \ref{fig:erro}. 
 
 \begin{figure}[h!]
 	\centering
   	\includegraphics[width=.9\linewidth]{figuras/erro.eps}
-  	\caption{\textit{Defeito \(\times\) Erro \(\times\) Falha}}
+  	\caption{Defeito \(\times\) Erro \(\times\) Falha}
   	\label{fig:erro}
 \end{figure}
 
-Testes podem ser projetados de dois pontos de vista: estrutural ou funcional. Os testes funcionais ignoram o mecanismo interno de execução e se concentram nos resultados gerados com o propósito de encontrar não conformidades com a especificação da funcionalidade. Testes funcionais são direcionados ao usuário e devem se preocupar unicamente com a funcionalidade. Já os testes estruturais analisam o funcionamento interno em diferentes níveis, podendo envolver todo o sistema, ou apenas partes dele. Para \cite{naik2008}, existem 3 níveis de testes estruturais, sendo eles de unidade, integração e sistema \cite{naik2008}.
+Testes podem ser projetados de dois pontos de vista: estrutural ou funcional. Os testes funcionais ignoram o mecanismo interno de execução e se concentram nos resultados gerados com o propósito de encontrar não conformidades com a especificação da funcionalidade. Testes funcionais são direcionados ao usuário e devem se preocupar unicamente com a funcionalidade. Já os testes estruturais analisam o funcionamento interno em diferentes níveis, podendo envolver todo o sistema, ou apenas partes dele. Para \cite{naik2008}, existem 3 níveis de testes estruturais, sendo eles de unidade, integração e sistema.
 
-Testes unitários são utilizados para testar de forma isolada funções, métodos ou classes. Após garantir que as unidades funcionam de forma satisfatória, os módulos são agrupados para se construir sub-sistemas maiores que são testados por meio das técnicas de teste de integração. Testes unitários são importantes pois, uma vez que o código está integrado a outros módulos, encontrar a causa de uma falha, se torna mais difícil \cite{naik2008}. Existem diferentes ferramentas de teste unitário para diversas linguagens, mas provêm recursos semelhantes para construção de acertivas para verificar se os resultados retornados pelo código testado está de acordo com a especificação proposta, algumas dessas ferramentas são JUnit \cite{junit2015}, ActiveSupport \cite{activetest2015}, Mocha \cite{mocha2015}. 
+Testes unitários são utilizados para testar de forma isolada funções, métodos ou classes. Após garantir que as unidades funcionam de forma satisfatória, os módulos são agrupados para se construir sub-sistemas maiores que são testados por meio das técnicas de teste de integração. Testes unitários são importantes pois, uma vez que o código está integrado a outros módulos, encontrar a causa de uma falha, se torna mais difícil \cite{naik2008}. Existem diferentes ferramentas de teste unitário para diversas linguagens, porém a maioria provê recursos semelhantes para construção de acertivas afim de verificar se os resultados retornados pelo código testado está de acordo com a especificação proposta, algumas dessas ferramentas são JUnit \cite{junit2015}, ActiveSupport \cite{activetest2015}, Mocha \cite{mocha2015}.
 
+As ferramentas citadas acima podem ser utilizadas também para construção de testes de integração. Testes estes que são efetuados de modo incremental, adicionando e testando, a cada ciclo, um novo módulo do sistema. Esse processo é repetido até que todos os módulos tenham sido integrados e testados. Esse nível de teste examina explicitamente as interfaces entre unidades a fim de verificar se o sistema é capaz de suportar testes do nível de sistema \cite{naik2008}.
+
+Os testes a nível de sistema englobam testes básicos de instalação e configuração; testes funcionais estensivos sobre todo o sistema; testes de robustez para verificar quão bem o sistema se recupera de situações de falha; testes de interoperabilidade, performance e escalabilidade e também testes de stress, para verificar os limites do sistema e em quais situações a falha ocorre. Muitos dos testes de sistema dependem diretamente do ambiente no qual o software será instalado e utilizado, pois necessitam aproximar os resultados para um ambiente o mais próximo do real possível \cite{naik2008}.
 
 
 \section{Metodologia \textit{Scrum}}
 
-O \textit{Scrum} é um framework para gerenciamento de projetos, fundamentado no empirismo. O empirismo afirma que o conhecimento provém da experiência e de tomadas de decisões baseadas no que é conhecido. Desse modo, o \textit{Scrum} utiliza do método da inspeção e adaptação para reagir a mudanças e melhor lidar com a complexidade e riscos do projeto. Outro aspecto importante do método é o foco no aprendizado e difusão do conhecimento, em que todos os integrantes do time cooperam para o aprendizado coletivo e para um melhor desenvolvimento do produto \cite{scrum2013}. 
+O \textit{Scrum} é um framework ágil para gerenciamento de projetos, fundamentado no empirismo. O empirismo afirma que o conhecimento provém da experiência e de tomadas de decisões baseadas no que é conhecido. Desse modo, o \textit{Scrum} utiliza do método da inspeção e adaptação para reagir a mudanças e melhor lidar com a complexidade e riscos do projeto. Outro aspecto importante do método é o foco no aprendizado e difusão do conhecimento, em que todos os integrantes do time cooperam para o aprendizado coletivo e para um melhor desenvolvimento do produto \cite{scrum2013}. 
 
 O \textit{Scrum} pode ser utilizado em diferentes contextos. Entretanto, surgiu para suprir uma demanda clara do processo produtivo da indústria de software, na qual inúmeros projetos falharam pela ineficiência dos processos produtivos em cascata, mais utilizados até meados dos anos 90, em projetos que custaram milhões e resultaram em fracaço para grandes organizações como \textit{FBI (Federal Bureau of Investigation)} ou \textit{NPR (National Public Radio)} \cite{scrum2014}.
 
@@ -446,5 +449,8 @@ Para este trabalho, foram levados em consideração quatro princípios básicos 
 	\end{itemize}
 	
 Claramente, os termos utilizados pelo autor são metafóricos, mas indicam de forma simples a ideia por trás dos tópicos.
-	
+
+Por fim, uma ultima prática que necessita de destaque para qualquer desenvolvimento ágil de software,  é o processo de integração contínua. Os times que utilizam essa prática visam alcançar dois resultados primários: a redução do custo para se requerido para cada episódio de integração dos componentes do sistema e a possibilidade de entrega de produto funcional a qualquer momento do desenvolvimento \cite{agile2015}.
+
+Na prática, estes objetivos requerem um processo de integração que seja passível de reprodução, pelo menos, em sua grande maioria, e que seja "automático". Isto é conseguido através de ferramentas de controle de versão, políticas e convenções da equipe e ferramentas projetadas especificamente para ajudar a alcançar a integração contínua \cite{agile2015}.
 
