@@ -2,7 +2,7 @@
 
 Tendo como base as teorias apresentadas, foi desenvolvido um sistema que utiliza o modelo arquitetural MVC e que contempla duas funcionalidades principais: um módulo para autoria de cursos compostos por vídeos interativos e um módulo para visualização adaptativa destes cursos, que contemple adaptações de conteúdo e navegação. 
 
-Para facilitar a compreensão do trabalho técnico desenvolvido, este capítulo foi subdividido em cinco tópicos: modelagem do domínio, arquitetura do software, gerência de configuração, testes e aspectos gerais. 
+Para facilitar a compreensão do trabalho técnico desenvolvido, este capítulo foi subdividido em seis tópicos: modelagem do domínio, suporte tecnológico, arquitetura do software, gerência de configuração, testes e aspectos gerais. 
 
 \section{Modelagem do Domínio}
 
@@ -47,3 +47,43 @@ A próxima modelagem feita foi referente aos dados do usuário: cursos que assis
 \end{figure}
 
 Como a quantização da rede é definida de forma diferente para cada usuário, os cálculos da avaliação e confiabilidade diretas e indiretas devem estar vinculados ao objeto que interconecta o usuário ao nodo da rede que se pretende calcular a quantização. Dessa forma, para cada usuário que se cadastre na rede e assista a algum curso, uma quantização diferente será gerada segundo a sua interação com o sistema.
+
+\section{Suporte Tecnológico}
+
+Sobre o ponto de vista arquitetural, foram elicitadas ferramentas que proporcionassem maiores facilidades para o desenvolvimento do sistema. Nesse sentido, foram selecionados três \textit{frameworks} que possibilitam o desenvolvimento de aplicações \textit{web} com certo nível de abstração arquitetural, que são mantidos segundo licenças de software livre e que possuem comunidades ativas. Sendo estes: Grails \cite{grails2015}, Ruby on Rails \cite{rubyrails2015}, e Meteor \cite{meteor2015}. 
+\\
+\\
+
+Para avaliar as ferramentas selecionadas, foi construído um cenário de prova de conceito, com a finalidade de verificar o esforço necessário para se implementar um pequeno software de manutensão de usuários nas três ferramentas. Os resultados coletados são descritos na tabela \ref{tab:tempo} abaixo:
+
+\begin{table}[h!]
+	\centering
+	\begin{tabular}{| c | c |}
+		\hline
+		\textit{Framework} & Tempo \\
+		\hline
+		Meteor & 37 min \\
+		\hline
+		Rails & 44 min \\
+		\hline
+		Grails & 74 min \\
+		\hline
+	\end{tabular}
+	\caption{Tempo para implementação da funcionalidade}
+	\label{tab:tempo}
+\end{table}
+
+Os \textit{frameworks} Grails e Ruby on Rails possuem estilos arquiteturais bastante semelhantes, já que ambos são orientados a convensão, e possuem ferramentas de terminal interativo para criação e adição de elementos do sistema, como modelos, visões, controladoras e \textit{plugins}. Entretanto, o tempo para se desenvolver a funcionalidade com Ruby on Rails foi menor devido aos menores problemas com a configuração do ambiente de desenvolvimento e dependências do \textit{framework}.
+
+Uma das vantagens da utilização do Ruby on Rails para o desenvolvimento é que a comunidade é bastante ativa e existe documentação abrangente sobre vários dos plugins que são disponibilizados para a plataforma. Porém, a configuração de uma ferramenta para renderização no cliente não é trivial e as complicações com a construção de APIs para comunicação remota e com a utilização de plugins JSON para recuperar dados do servidor impossibilitaram a construção da funcionalidade com este recurso.
+
+Para a plataforma Grails, os mesmos problemas foram encontrados para a construção de uma aplicação com renderização no cliente, além dos problemas com configuração de ambiente e tempo de desenvolvimento da funcionalidade. A vantagem em se optar por utilizar uma ferramenta Java é a facilidade em se adicionar recursos multiagentes, já que existem ferramentas consolidadas como o JADE \cite{jade2015} que são mantidos nessa linguagem. Como o foco deste trabalho não abrange o desenvolvimento de agentes, este \textit{framework} foi descartado.
+
+O processo de instalação e utilização da plataforma Meteor foi sem dúvidas o mais simples, todas as dependências do sistema são mantidas por meio do gerenciador de pacotes do Node.js \cite{nodejs2015} e foram instaladas sem nenhum empecilho. Apenas o processo simplificado de instalação não garante ao Meteor sua escolha como plataforma de desenvolvimento, além disso, o tempo para se implementar a funcionalidade proposta foi o menor dentre as plataformas, apresentou maior facilidade na construção de aplicações com renderização no cliente, possui comunidade ativa e releases frequentes de novas versões e mantém também mecanismos de teste e depuração para as aplicações Meteor, em sua maioria sob licenças de sotware livre compatíveis com a licença GPL v3 adotada neste projeto.
+
+A opção por uma ferramenta que facilite a renderização no cliente é uma necessidade da proposta para construção do curso, já que para criar um grafo de hypervideos em um curso, ou um grafo de subvideos e questões dentro de um hypervideo, tem-se a necessidade de se construir uma biblioteca para permitir a interação com o usuário sem que, a cada interação, se gere uma nova renderização da página proveniente do servidor, e que evite perda de dados caso ocorra perda de conexão com a \textit{internet}. Arquiteturas construídas com Ruby on Rails ou Grails não oferecem suporte esse tipo de interação, exigindo bibliotecas externas à plataforma e o conhecimento em linguagens de programação diferentes das utilizadas nativamente no \textit{framework}, como \textit{JavaScript} ou \textit{CoffeScript}.
+
+Com esta análise, optou-se pela plataforma \textit{Meteor} devido às facilidades encontradas e também pela necessidade de domínio em apenas uma linguagem: o \textit{JavaScript}. A lista completa de pacotes e ferramentas utilizadas se encontra no Apêndice A. 
+
+\section{Arquitetura do Sistema}
+
