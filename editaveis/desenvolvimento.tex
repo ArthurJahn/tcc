@@ -77,13 +77,63 @@ Os \textit{frameworks} Grails e Ruby on Rails possuem estilos arquiteturais bast
 
 Uma das vantagens da utilização do Ruby on Rails para o desenvolvimento é que a comunidade é bastante ativa e existe documentação abrangente sobre vários dos plugins que são disponibilizados para a plataforma. Porém, a configuração de uma ferramenta para renderização no cliente não é trivial e as complicações com a construção de APIs para comunicação remota e com a utilização de plugins JSON para recuperar dados do servidor impossibilitaram a construção da funcionalidade com este recurso.
 
-Para a plataforma Grails, os mesmos problemas foram encontrados para a construção de uma aplicação com renderização no cliente, além dos problemas com configuração de ambiente e tempo de desenvolvimento da funcionalidade. A vantagem em se optar por utilizar uma ferramenta Java é a facilidade em se adicionar recursos multiagentes, já que existem ferramentas consolidadas como o JADE \cite{jade2015} que são mantidos nessa linguagem. Como o foco deste trabalho não abrange o desenvolvimento de agentes, este \textit{framework} foi descartado.
+Para a plataforma Grails, os mesmos problemas foram encontrados para a construção de uma aplicação com renderização no cliente, além dos problemas com configuração de ambiente e tempo de desenvolvimento da funcionalidade. A vantagem em se optar por utilizar uma ferramenta Java é a facilidade em se adicionar recursos multiagentes para tutoria inteligente, já que existem ferramentas consolidadas como o JADE \cite{jade2015} que são mantidas nessa linguagem. Como o foco deste trabalho não abrange o desenvolvimento de agentes, este \textit{framework} foi descartado.
 
-O processo de instalação e utilização da plataforma Meteor foi sem dúvidas o mais simples, todas as dependências do sistema são mantidas por meio do gerenciador de pacotes do Node.js \cite{nodejs2015} e foram instaladas sem nenhum empecilho. Apenas o processo simplificado de instalação não garante ao Meteor sua escolha como plataforma de desenvolvimento, além disso, o tempo para se implementar a funcionalidade proposta foi o menor dentre as plataformas, apresentou maior facilidade na construção de aplicações com renderização no cliente, possui comunidade ativa e releases frequentes de novas versões e mantém também mecanismos de teste e depuração para as aplicações Meteor, em sua maioria sob licenças de sotware livre compatíveis com a licença GPL v3 adotada neste projeto.
+O processo de instalação e utilização da plataforma Meteor foi o mais simples dentre as opções, todas as dependências do sistema são mantidas por meio do gerenciador de pacotes do Node.js \cite{nodejs2015} e foram instaladas sem nenhum empecilho. Apenas o processo simplificado de instalação não garante ao Meteor sua escolha como plataforma de desenvolvimento, além disso, o tempo para se implementar a funcionalidade proposta foi o menor, apresentou maior facilidade na construção de aplicações com renderização no cliente, possui comunidade ativa e releases frequentes de novas versões e mantém também mecanismos de teste e depuração para as aplicações, em sua maioria sob licenças de sotware livre compatíveis com GPL v3 adotada neste projeto.
 
-A opção por uma ferramenta que facilite a renderização no cliente é uma necessidade da proposta para construção do curso, já que para criar um grafo de hypervideos em um curso, ou um grafo de subvideos e questões dentro de um hypervideo, tem-se a necessidade de se construir uma biblioteca para permitir a interação com o usuário sem que, a cada interação, se gere uma nova renderização da página proveniente do servidor, e que evite perda de dados caso ocorra perda de conexão com a \textit{internet}. Arquiteturas construídas com Ruby on Rails ou Grails não oferecem suporte esse tipo de interação, exigindo bibliotecas externas à plataforma e o conhecimento em linguagens de programação diferentes das utilizadas nativamente no \textit{framework}, como \textit{JavaScript} ou \textit{CoffeScript}.
+A opção por uma ferramenta que facilite a renderização no cliente é uma necessidade da proposta para construção do curso, já que para criar um grafo de hypervideos em um curso, ou um grafo de subvideos e questões dentro de um hypervideo, tem-se a necessidade de se construir uma biblioteca para permitir a utilização do sistema sem que, a cada interação, se gere uma nova renderização da página proveniente do servidor, e que evite perda de dados caso ocorra falha de conexão com a \textit{internet}. Arquiteturas construídas com Ruby on Rails ou Grails não oferecem suporte esse tipo de interação, exigindo bibliotecas externas à plataforma e o conhecimento em linguagens de programação diferentes das utilizadas nativamente no \textit{framework}, como \textit{JavaScript} ou \textit{CoffeScript}.
 
-Com esta análise, optou-se pela plataforma \textit{Meteor} devido às facilidades encontradas e também pela necessidade de domínio em apenas uma linguagem: o \textit{JavaScript}. A lista completa de pacotes e ferramentas utilizadas se encontra no Apêndice A. 
+Com esta análise, optou-se pela plataforma \textit{Meteor} devido às facilidades encontradas, pela necessidade de domínio em apenas uma linguagem: o \textit{JavaScript} e também pela possibilidade de se incluir bibliotecas para componentes visuas \textit{web}, como o Polymer \cite{polymer2015}. A lista completa de pacotes e ferramentas utilizadas se encontra no Apêndice A. 
 
 \section{Arquitetura do Sistema}
+
+Antes de compreender a arquitetura do sistema proposto, é preciso compreender como o \textit{framework} funciona e quais as possibilidades para expansão ou modificação da arquitetura proposta pela plataforma. Cada instância da aplicação no cliente registra serviços segundo padrão \textit{publish-subscribe} para coleções providas pelo servidor. Nativamente, o \textit{framework} dá suporte apenas para registros de \textit{publish-subscribe} para dados definidos em coleções no banco de dados.
+
+\begin{figure}[h!]
+	\centering
+	\includegraphics[width=.8\linewidth]{figuras/meteorarq.eps}	
+  	\caption{Arquitetura Interna do \textit{Framework Meteor}}
+	\small{Fonte: \cite{mongodb2015}}
+  	\label{fig:meteorarq}
+\end{figure}
+
+O banco de dados utilizado pelo \textit{Meteor} é o MongoDB, que dá suporte a arquivos JSON, é facilmente escalável e possui boa performance. A aplicação no servidor roda em um \textit{container} Node.js e o \textit{framework} gerencia as trocas de dados cliente-servidor por meio de uma implementação em JavaScript da API do MongoDB que roda no navegador, chamada MiniMongo \cite{mongodb2015}. A figura \ref{fig:meteorarq} mostra como o \textit{Meteor}  gerencia os dados da aplicação e como são providos os serviços para os clientes. 
+
+A plataforma não restringe, nem define um modelo arquitetural específico, abrindo espaço para que o desenvolvedor se encarregue de projetar de modo geral a arquietetura da aplicação. Inicialmente, uma aplicação possui arquitetura semelhante a mostrada na figura \ref{fig:subarq1} de forma que não existe separação nenhuma entre camadas lógicas, apenas entre servidor e cliente. A primeira forma da arquitetura proposta para o Sistema de vídeos Interativos incluiu à aplicação uma camada de modelo, separarando os dados do domínio, como ilustra a figura \ref{fig:subarq2}.
+
+A lógica no cliente de uma aplicação \textit{Meteor} é gerenciada por uma biblioteca de renderização nativa (i.e. \textit{Blaze}), que responde reativamente às alterações que ocorrem nos dados locais, essa característica permite a criação de aplicações nativamente reativas e gera requisições menores por utilizar um protoco próprio e mais leve, denominado DDP (\textit{Distributed Data Protocol}) \cite{blaze2015}. 
+
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}{.3\textwidth}
+  		\centering
+  		\includegraphics[width=.9\linewidth]{figuras/arquitetura1.eps}
+  		\caption{estrutura inicial}
+  		\label{fig:subarq1}
+	\end{subfigure}%
+ 	 	\begin{subfigure}{.3\textwidth}
+  		\centering
+  		\includegraphics[width=.9\linewidth]{figuras/arquitetura2.eps}
+  		\caption{modelo separado}
+  		\label{fig:subarq2}
+	\end{subfigure}%
+
+	\begin{subfigure}{.3\textwidth}
+  		\centering
+  		\includegraphics[width=.9\linewidth]{figuras/arquitetura3.eps}
+  		\caption{visão separada}
+  		\label{fig:subarq3}
+	\end{subfigure}%
+	\begin{subfigure}{.3\textwidth}
+  		\centering
+  		\includegraphics[width=.9\linewidth]{figuras/arquitetura4.eps}
+  		\caption{controle organizado}
+  		\label{fig:subarq4}
+	\end{subfigure}
+	\caption{Evolução da arquitetura da aplicação}
+	\label{fig:arquitetura}
+\end{figure}
+
+Apesar das vantagens, o \textit{Blaze} possui alto acoplamento entre o controle e a visão, pois gerencia ambas as abstrações lógicas em um único arquivo, dificultando futuras manutenções da aplicação. Com a finalidade de se separar a lógica de controle e apresentação, foi adicionado ao sistema mais uma ferramenta, \textit{i.e. Polymer} \cite{polymer2015}, que utiliza dados do modelo recebidos pelo \textit{Balze} sempre que há alterações, e controla unicamente funções de apresentação, como posicionamento, cores, animações e outras operações da camada de visão. Esta versão da arquitetura é ilustrada pela figura \ref{fig:subarq3}.
+
 
