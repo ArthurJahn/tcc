@@ -105,26 +105,26 @@ A lógica no cliente de uma aplicação \textit{Meteor} é gerenciada por uma bi
 
 \begin{figure}[h!]
 	\centering
-	\begin{subfigure}{.3\textwidth}
+	\begin{subfigure}{.34\textwidth}
   		\centering
   		\includegraphics[width=.9\linewidth]{figuras/arquitetura1.eps}
   		\caption{estrutura inicial}
   		\label{fig:subarq1}
 	\end{subfigure}%
- 	 	\begin{subfigure}{.3\textwidth}
+ 	 \begin{subfigure}{.34\textwidth}
   		\centering
   		\includegraphics[width=.9\linewidth]{figuras/arquitetura2.eps}
   		\caption{modelo separado}
   		\label{fig:subarq2}
 	\end{subfigure}%
 
-	\begin{subfigure}{.3\textwidth}
+	\begin{subfigure}{.34\textwidth}
   		\centering
   		\includegraphics[width=.9\linewidth]{figuras/arquitetura3.eps}
   		\caption{visão separada}
   		\label{fig:subarq3}
 	\end{subfigure}%
-	\begin{subfigure}{.3\textwidth}
+	\begin{subfigure}{.34\textwidth}
   		\centering
   		\includegraphics[width=.9\linewidth]{figuras/arquitetura4.eps}
   		\caption{controle organizado}
@@ -134,6 +134,14 @@ A lógica no cliente de uma aplicação \textit{Meteor} é gerenciada por uma bi
 	\label{fig:arquitetura}
 \end{figure}
 
-Apesar das vantagens, o \textit{Blaze} possui alto acoplamento entre o controle e a visão, pois gerencia ambas as abstrações lógicas em um único arquivo, dificultando futuras manutenções da aplicação. Com a finalidade de se separar a lógica de controle e apresentação, foi adicionado ao sistema mais uma ferramenta, \textit{i.e. Polymer} \cite{polymer2015}, que utiliza dados do modelo recebidos pelo \textit{Balze} sempre que há alterações, e controla unicamente funções de apresentação, como posicionamento, cores, animações e outras operações da camada de visão. Esta versão da arquitetura é ilustrada pela figura \ref{fig:subarq3}.
+Apesar das vantagens, o \textit{Blaze} possui alto acoplamento entre o controle e a visão, pois gerencia ambas as abstrações lógicas em um único arquivo, dificultando futuras manutenções da aplicação. Com a finalidade de se separar a lógica de controle e apresentação, foi adicionado ao sistema mais uma ferramenta, \textit{i.e. Polymer} \cite{polymer2015}, que utiliza dados do modelo recebidos pelo \textit{Balze} sempre que há alterações, e controla unicamente funções de apresentação, como posicionamento, cores, animações e outras operações da camada de visão. esta versão é ilustrada pela figura \ref{fig:subarq3}. 
+
+Originalmente, aplicações \textit{Meteor} sincronizam os dados do cliente com o servidor automaticamente, sem que haja uma assinatura explícita dos dados (\textit{i.e. subscription}). Com o crescimento da base de dados do servidor, se torna inseguro e inviável que os dados sejam compartilhados entre todos os clientes ativos da aplicação. Para corrigir esta falha, a camada de controle foi extendida ao servidor com a função de limitar os dados que eram enviados para cada cliente por meio do padrão \textit{publish-subscribe}, sendo que apenas os dados necessários para a atual rota do usuário eram enviados para o cliente e restrições de permissão para alteração dos dados foram criadas para manter a confiabilidade do banco. Esta é a versão atual da arquitetura, como ilustra a figura \ref{fig:subarq4}.
+
+Agora que a arquitetura lógica foi descrita, deve-se verificar como esta foi implementada do ponto de vista de pacotes, com a finalidade de identificar a estrutura de diretórios e organização dos arquivos e dependências do projeto. O diagrama XXXX apresenta a organização dos pacotes.
+
+
+
+
 
 
