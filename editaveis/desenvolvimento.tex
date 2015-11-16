@@ -134,14 +134,22 @@ A lógica no cliente de uma aplicação \textit{Meteor} é gerenciada por uma bi
 	\label{fig:arquitetura}
 \end{figure}
 
-Apesar das vantagens, o \textit{Blaze} possui alto acoplamento entre o controle e a visão, pois gerencia ambas as abstrações lógicas em um único arquivo, dificultando futuras manutenções da aplicação. Com a finalidade de se separar a lógica de controle e apresentação, foi adicionado ao sistema mais uma ferramenta, \textit{i.e. Polymer} \cite{polymer2015}, que utiliza dados do modelo recebidos pelo \textit{Balze} sempre que há alterações, e controla unicamente funções de apresentação, como posicionamento, cores, animações e outras operações da camada de visão. esta versão é ilustrada pela figura \ref{fig:subarq3}. 
+Apesar das vantagens, o \textit{Blaze} possui alto acoplamento entre o controle e a visão, pois gerencia ambas as abstrações lógicas em um único arquivo, dificultando futuras manutenções da aplicação. Com a finalidade de se separar a lógica de controle e apresentação, foi adicionado ao sistema mais uma ferramenta, o \textit{Polymer} \cite{polymer2015}, que utiliza dados do modelo recebidos pelo \textit{Balze} sempre que há alterações, e controla unicamente funções de apresentação, como posicionamento, cores, animações e outras operações da camada de visão. Esta versão é ilustrada pela figura \ref{fig:subarq3}. 
 
-Originalmente, aplicações \textit{Meteor} sincronizam os dados do cliente com o servidor automaticamente, sem que haja uma assinatura explícita dos dados (\textit{i.e. subscription}). Com o crescimento da base de dados do servidor, se torna inseguro e inviável que os dados sejam compartilhados entre todos os clientes ativos da aplicação. Para corrigir esta falha, a camada de controle foi extendida ao servidor com a função de limitar os dados que eram enviados para cada cliente por meio do padrão \textit{publish-subscribe}, sendo que apenas os dados necessários para a atual rota do usuário eram enviados para o cliente e restrições de permissão para alteração dos dados foram criadas para manter a confiabilidade do banco. Esta é a versão atual da arquitetura, como ilustra a figura \ref{fig:subarq4}.
+Originalmente, aplicações \textit{Meteor} sincronizam os dados do cliente com o servidor automaticamente, sem que haja uma assinatura explícita dos dados (\textit{i.e. subscription}). Com o crescimento da base de dados do servidor, se torna inseguro e inviável que os dados sejam compartilhados entre todos os clientes ativos da aplicação. Para corrigir esta falha, a camada de controle foi extendida ao servidor com a função de limitar os dados que eram enviados para cada cliente por meio do padrão \textit{publish-subscribe}, sendo que apenas os dados necessários para a atual rota do usuário eram enviados para o cliente. Restrições de permissão para alteração dos dados foram criadas para manter a confiabilidade do banco. Esta é a versão atual da arquitetura, como ilustra a figura \ref{fig:subarq4}.
 
-Agora que a arquitetura lógica foi descrita, deve-se verificar como esta foi implementada do ponto de vista de pacotes, com a finalidade de identificar a estrutura de diretórios e organização dos arquivos e dependências do projeto. O diagrama XXXX apresenta a organização dos pacotes.
+Agora que a arquitetura lógica foi descrita, deve-se verificar como esta foi implementada do ponto de vista de pacotes, com a finalidade de identificar a estrutura de diretórios e organização dos arquivos e dependências do projeto. O diagrama da fig. \ref{fig:arq_pacotes} apresenta a organização dos pacotes.
 
+\begin{figure}[h!]
+  	\centering
+  	\includegraphics[width=.8\linewidth]{figuras/arq_pacotes.eps}
+  	\caption{Diagrama de pacotes da arquitetura}
+  	\label{fig:arq_pacotes}
+\end{figure}
 
+É possível perceber que no diagrama não existe nenhum pacote denominado controle, ou visão. Isto se deve ao fato de que o diretório em que se encontram os arquivos do \textit{Blaze} é geralmente denominado \textit{template}. No caso desta aplicação esse pacote é a camada de controle do cliente. A camada de visão se encontra no pacote \textit{public} juntamente com quaisquer outros recursos utilizados pela aplicação, como imagens.
 
+Além disso, não existe nenhuma separação em pacotes no servidor, para modelo e controle. Até o momento deste trabalho, para as operações do controle no servidor são necessários apenas dois arquivos e para o modelo, apenas um, por esta razão, ainda não houve a necessidade de se criar pacotes diferentes.
 
-
+O pacote de \textit{scripts} merece certo destaque pelo fato de gerenciar testes dos componentes visuais, rodar a aplicação em modo de \textit{profile} para análise de memória, consumo de CPU e tempo de resposta, e para gerar relatórios de cobertura e de análise estática de código, como aderência ao padrão de estilo de código \textit{JavaScript} para o \textit{Meteor}. Todas as saídas dos scripts são geradas no diretório oculto de \textit{output} e servem como base para parte do processo de integração contínua, melhor explicado no tópico sobre testes. 
 
