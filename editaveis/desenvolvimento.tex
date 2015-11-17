@@ -189,5 +189,16 @@ Além dos testes do \textit{Velocity} foi necessário configurar também um meca
 
 Após atualização para versão 1.2 do \textit{Meteor}, devido à refatorações na lógica de criação de aplicações espelhadas, não existem \textit{plugins} para gerar cobertura de código para a aplicação que seja compatível com o \textit{Velocity}, por essa razão, não são gerados relatórios de cobertura para a aplicação como um todo.
 
+Além dos testes a nível unitário de integração utilizados, foi implementado um \textit{script} para configuração de uma ferramenta  para monitoramento de performance, como mostrado na figura \ref{fig:profile}. A ferramenta foi mais utilizada para analisar o tempo de resposta para as operações de \textit{publish} processadas no servidor, que não deve ultrapassar uma média de 300 ms \cite{kadira2015}.
+\\ 
+\\
+\\
+\\
+\begin{figure}[h!]
+  	\centering
+  	\includegraphics[width=.7\linewidth]{figuras/profile.eps}
+  	\caption{Ferramenta para monitoramento de recursos utilizados pela aplicação}
+  	\label{fig:profile}
+\end{figure}
 
 \section{Gerência de Configuração}
