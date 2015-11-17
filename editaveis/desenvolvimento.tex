@@ -153,9 +153,41 @@ Além disso, não existe nenhuma separação em pacotes no servidor, para modelo
 
 O pacote de \textit{scripts} merece certo destaque pelo fato de gerenciar testes dos componentes visuais, rodar a aplicação em modo de \textit{profile} para análise de memória, consumo de CPU e tempo de resposta, e para gerar relatórios de cobertura e de análise estática de código, como aderência ao padrão de estilo de código \textit{JavaScript} para o \textit{Meteor}. Todas as saídas dos scripts são geradas no diretório oculto de \textit{output} e servem como base para parte do processo de integração contínua, melhor explicado no tópico seguinte sobre testes. 
 
+
 \section{Testes}
 
-O \textit{Velocity} é o \textit{framework} oficial de testes para aplicações \textit{Meteor}, suportando diferentes motores de teste como Mocha \cite{mocha2015}, Jasmine \cite{jasmine2015} ou Cucumber \cite{cucumber2015}, e permitindo que os resultados sejam exibidos em um componente reativo na interface da própria aplicação, ou via terminal, como um mecanismo para suporte em amibentes de integração contínua.
+O \textit{Velocity} é o \textit{framework} oficial de testes para aplicações \textit{Meteor}, suportando diferentes motores de teste como Mocha \cite{mocha2015}, Jasmine \cite{jasmine2015} ou Cucumber \cite{cucumber2015}, e permitindo que os resultados sejam exibidos em um componente reativo na interface da própria aplicação (fig. \ref{fig:teste_a}), ou via terminal (fig. \ref{fig:teste_b}), como um mecanismo para suporte em amibentes de integração contínua.
 
-Para construção dos testes da aplicação foi utilizado o motor Mocha que fornece mecanismos para a construção de testes unitários e de integração que rodam com apenas um espelhamento da aplicação, reduzindo o consumo de memória e necessitando de uma máquina para o ambiente de integração contínua com uma configuração menos potente, se comparado com o Jasmine que utiliza dois espelhos diferentes, um para testes unitários e outro para testes de integração \cite{jasmine2015}.
+\begin{figure}[h!]
+	\centering
+	\begin{subfigure}{.5\textwidth}
+  		\centering
+  		\includegraphics[width=.95\linewidth]{figuras/teste_a.eps}
+  		\caption{componente \textit{Velocity} html}
+  		\label{fig:teste_a}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+  		\centering
+  		\includegraphics[width=.95\linewidth]{figuras/teste_b.eps}
+  		\caption{\textit{Velocity} via terminal}
+  		\label{fig:teste_b}
+	\end{subfigure}
+	\caption{Visualização dos resultados de teste da aplicação}
+	\label{fig:testes}
+\end{figure}
 
+Para construção dos testes da aplicação foi utilizado o motor Mocha que fornece mecanismos para a construção de testes unitários e de integração que rodam com apenas um espelhamento da aplicação, reduzindo o consumo de memória, se comparado com o Jasmine que utiliza dois espelhos diferentes, um para testes unitários e outro para testes de integração \cite{jasmine2015}. Essa característica é importante para um ambiente de integração contínua pois reduz as configurações mínimas para a máquina que hospeda o serviço.
+
+Além dos testes do \textit{Velocity} foi necessário configurar também um mecanismo de testes para os componentes construídos com o \textit{Polymer}. A comunidade que mantém o \textit{Polymer}, mantém também uma ferramenta de testes unitários e um \textit{plugin} para gerar relatórios de cobertura. O \textit{script} para os testes dos componentes é encontrado no diretório de \textit{scripts} e os relatórios de testes, como mostrado na figura \ref{fig:teste_polymer}, são gerados dentro da pasta de \textit{outputs}.
+
+\begin{figure}[h!]
+  	\centering
+  	\includegraphics[width=.8\linewidth]{figuras/teste_polymer.eps}
+  	\caption{Cobertura para componentes \textit{Polymer}}
+  	\label{fig:teste_polymer}
+\end{figure}
+
+Após atualização para versão 1.2 do \textit{Meteor}, devido à refatorações na lógica de criação de aplicações espelhadas, não existem \textit{plugins} para gerar cobertura de código para a aplicação que seja compatível com o \textit{Velocity}, por essa razão, não são gerados relatórios de cobertura para a aplicação como um todo.
+
+
+\section{Gerência de Configuração}
