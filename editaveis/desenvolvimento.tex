@@ -202,3 +202,21 @@ Além dos testes a nível unitário de integração utilizados, foi implementado
 \end{figure}
 
 \section{Gerência de Configuração}
+
+O controle de versão é a espinha dorsal de qualquer gerência de configuração, apoiando atividades de controle de mudanças e de integração contínua. Ferramentas de controle de versão atuam na identificação e armazenamento dos itens de configuração e mantém versões durante todo o cíclo de vida do software, criando rótulos e ramificações no projeto \cite{swebok2014}. 
+
+Existem diversas ferramentas que proporcionam diferentes formas de versionamento. Neste projeto, foi mantido um repositório \textit{git}, que mantém ramificações por meio de \textit{branches} e registra mudanças na forma de \textit{commits}. O reposiório está mantido em uma ferramenta \textit{on-line} chamada \textit{Github}, que possui facilidades para gerenciamento e correção de falhas ou melhorias, por meio de \textit{issues} e possibilita a comunicação com ferramentas externas para gerenciamento de \textit{builds} e ambientes de integração contínua, por meio de \textit{webhooks} \cite{github2015}. 
+
+O processo de integração contínua tem como objetivo garantir que as mudanças no sistema sejam construídas, testadas e relatadas o quanto antes, para que falhas possam ser mais rapidamente encontradas e corrigidas. Para que o mecanismo funcione adequadamente, é preciso manter boas práticas dentre a equipe de desenvolvimento e uma política de \textit{branches}. Existem ferramentas que automatizam o processo de integração e possuem diversas configurações para análise de qualidade de código, cobertura de testes e diversos indicadores de qualidade do produto de software produzido. Neste projeto foi utilizado o \textit{Jenkins} para configuração do ambiente de integração contínua da aplicação \cite{jenkins2015}.
+
+Para o repositório de código do prógeto, foram criadas apenas duas \textit{branches}, uma de desenvolvimento (\textit{devel}), e a principal (\textit{master}). Atualizações do desenvolvimento são sempre submetidas para a \textit{branch devel}, e o ambiente de integração contínua se encarrega de gerar uma nova \textit{build}, rodar os testes da aplicação, gerar os relatórios de análise estática de código e por fim, caso o resultado seja considerado satisfatório, as alterações são submetidas para a \textit{branch master}. 
+
+Caso existam falhas nas alterações que violem as asserivas definidas para o conjunto de testes da aplicação, os testes não passarão e a \textit{build} terá falhado, permitindo assim, que as correções necessárias possam ser feitas antes da entrega do produto e sem a necessidade de trabalho manual para isso. A figura \ref{fig:jenkins} mostra o ambiente de integração contínua configurado para o projeto. 
+
+\begin{figure}[h!]
+  	\centering
+  	\includegraphics[width=1\linewidth]{figuras/jenkins.eps}
+  	\caption{Ferramenta de Integração Contínua para o projeto Hypervideos}
+  	\label{fig:jenkins}
+\end{figure}
+
