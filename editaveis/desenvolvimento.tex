@@ -271,8 +271,50 @@ Esta seção apresenta os resultados obtidos no desenvolvimento, englobando o m�
 
 \subsection{Módulo de Autoria de Cursos}
 
-O módulo de autoria de cursos compostos por hypervideos tem o propósito de permitir que educadores construam materiais de estudo para enriquecer a base de dados do sistema proposto. Este módulo pode ser mais facilmente compreendido se dividido em dois níves: o nível conceitual e o nível de construção de hypervídeos.
+O módulo de autoria de cursos tem o propósito de permitir que educadores construam materiais de estudo para enriquecer a base de dados do sistema proposto. Este módulo pode ser mais facilmente compreendido se dividido em dois níves: o nível conceitual e o nível de construção do hypervídeo.
 
+No nível conceitual, o professor poderá criar um novo curso, seus hipervideos e as ligações entre eles, construindo assim, a rede na qual o estudante navegará. Este nível representa o mapa conceitual que aparecerá para o estudante quando pesquisar um curso no sistema, sendo de extrema importância, pois, o aprendizado é mais efetivo se o estudante tiver conhecimento do todo antes das partes.
+
+\begin{figure}[h!]
+  	\centering
+  	\begin{subfigure}{.5\textwidth}
+  		\centering
+  		\includegraphics[width=.9\linewidth]{figuras/autoria_conceitual_a.eps}
+  		\caption{Adição de título ao curso}
+  		\label{fig:autoria_conceitual_a}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+  		\centering
+  		\includegraphics[width=.9\linewidth]{figuras/autoria_conceitual_b.eps}
+  		\caption{construção do mapa conceitual}
+  		\label{fig:autoria_conceitual_b}
+	\end{subfigure}%
+	
+	\begin{subfigure}{.5\textwidth}
+  		\centering
+  		\includegraphics[width=.9\linewidth]{figuras/autoria_conceitual_c.eps}
+  		\caption{visualização dos conceitos}
+  		\label{fig:autoria_conceitual_c}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+  		\centering
+  		\includegraphics[width=.9\linewidth]{figuras/autoria_conceitual_d.eps}
+  		\caption{modo de edição de ligações}
+  		\label{fig:autoria_conceitual_d}
+	\end{subfigure}%
+  	\caption{Funções do módulo de autoria no nível conceitual}
+  	\label{fig:autoria_conceitual}
+\end{figure}
+
+A figura \ref{fig:autoria_conceitual_a} mostra o componente de criação de um cruso, no qual existe um campo para a definição do nome do curso a ser criado e uma área central que permite a composição do mapa conceitual, por meio da adição, remoção, interligação ou edição de cada hypervideo adicionado durante a construção do curso. 
+
+Novos hypervideos podem ser adicionados clicando na área de composição do curso, a figura \ref{fig:autoria_conceitual_b} ilustra um mapa construído, no qual podem ser visualizados os ícones que representam hypevídeos. Clicando em um hypervídeo criado, é possível ver o conceito definido para ele, como ilustra a figura \ref{fig:autoria_conceitual_c}, com todos os conceitos do mapa visíveis. A figura \ref{fig:autoria_conceitual_d}  mostra o mapa conceitual em modo de ligação, para permitir a criação e deleção de \textit{links} entre hypervideos.
+
+É possível visualizar nas figuras \ref{fig:autoria_conceitual_b} e \ref{fig:autoria_conceitual_c}, três botões coloridos sobre o ícone de um hypervideo. Esses botões aparecem quando o cursor passa sobre o ícone e permitem que o usuário execute as seguintes ações: remover o hypervervídeo (botão vermelho), criar conexões para o hypervideo (botão amarelo) ou construir o conteúdo do hypervídeo (botão verde), esta última sendo discutida a seguir. 
+
+No nível de construção do conteúdo de um hypervideo é possível adicionar subvídeos e questões e interligá-los para que as perguntas referentes aos conteúdos possam ser apresentadas logo após o conteúdo. 
+
+Subvídeos são criados por meio do carregamento de arquivos de vídeo do computador do autor do curso na aba de vídeos e criam automaticamente questões vinculadas. O sistema permite também que mais questões sejam criadas dentro da aba de questões. Subvídeos e questões possuem um nível de visibilidade para restringir que materiais muito complexos ou muito simples apareçam para o usuário que assiste ao curso. A figura XXX apresenta a página de composição de um hypervídeo com dois subvídeos (fig. XXXa) e 3 questões (fig. XXXb) e o grafo de conexões do hypervídeo (fig. XXXc).
 \subsection{Módulo de Visualização Adaptativa}
 
 \subsection{Mecanismo de Quantização por meio da QRN}
