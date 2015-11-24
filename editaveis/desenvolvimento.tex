@@ -249,7 +249,7 @@ Os resultados das \textit{builds} podem ser visualizados diretamente no reposit�
 
 De forma geral, o processo de desenvolvimento do sistema foi guiado por marcos (i.e. \textit{milestones}) definidos no repositório do projeto. Para que o objetivo de cada marco fosse alcançado, foram definidas atividades a serem concluídas, registradas em \textit{issues}, sendo estimadas, implementadas e testadas dentro do período de duração de cada \textit{milestone} do projeto. Para organização do fluxo de trabalho, foi utilizado um \textit{kanban} para gerenciar as \textit{issues} que seriam desenvolvidas a cada semana\footnote{ Todas as atividades e marcos do projeto podem ser visualizados no repositório no \textit{Github} (\url{www.github.com/ArthurJahn/hypervideos})}.
 
-O foco inicial do trabalho foi levantar um ambiente com as ferramentas necessárias para o desenvolvimento (como os ambientes local e integração contínua). Posteriormente, foi desenvolvido o módulo de autoria, o  módulo de visualização e só então o algoritmo de quantização da rede. Entre estas etapas o sistema sofreu várias mudanças, as mais importantes estão: 
+O foco inicial do trabalho foi levantar um ambiente com as ferramentas necessárias para o desenvolvimento (como os ambientes local e integração contínua). Posteriormente, foi desenvolvido o módulo de autoria, o  módulo de visualização e só então o algoritmo de quantização da rede. Entre estas etapas o sistema sofreu várias mudanças, as mais importantes são: 
 \begin{itemize}
 	\item mudanças na arquitetura, sendo estas: a separação do modelo de domínio; a separação da camada de visão por meio da componentização; e a organização da camada de controle, como ilustrado na figura \ref{fig:arquitetura}.
 	\item mudanças dos testes da aplicação que inicialmente eram apenas testes \textit{Meteor} e passaram a englobar testes \textit{Polymer}.
@@ -306,7 +306,7 @@ No nível conceitual, o professor poderá criar um novo curso, seus hipervideos 
   	\label{fig:autoria_conceitual}
 \end{figure}
 
-A figura \ref{fig:autoria_conceitual_a} mostra o componente de criação de um cruso, no qual existe um campo para a definição do nome do curso a ser criado e uma área central que permite a composição do mapa conceitual, por meio da adição, remoção, interligação ou edição de cada hypervideo adicionado durante a construção do curso. 
+A figura \ref{fig:autoria_conceitual_a} mostra o componente de criação de um curso, no qual existe um campo para a definição do nome do curso a ser criado e uma área central que permite a composição do mapa conceitual, por meio da adição, remoção, interligação ou edição de cada hypervideo adicionado durante a construção do curso. 
 
 Novos hypervideos podem ser adicionados clicando na área de composição do curso, a figura \ref{fig:autoria_conceitual_b} ilustra um mapa construído, no qual podem ser visualizados os ícones que representam hypevídeos. Clicando em um hypervídeo criado, é possível ver o conceito definido para ele, como ilustra a figura \ref{fig:autoria_conceitual_c}, com todos os conceitos do mapa visíveis. A figura \ref{fig:autoria_conceitual_d}  mostra o mapa conceitual em modo de ligação, para permitir a criação e deleção de \textit{links} entre hypervideos.
 
@@ -314,7 +314,54 @@ Novos hypervideos podem ser adicionados clicando na área de composição do cur
 
 No nível de construção do conteúdo de um hypervideo é possível adicionar subvídeos e questões e interligá-los para que as perguntas referentes aos conteúdos possam ser apresentadas logo após o conteúdo. 
 
-Subvídeos são criados por meio do carregamento de arquivos de vídeo do computador do autor do curso na aba de vídeos e criam automaticamente questões vinculadas. O sistema permite também que mais questões sejam criadas dentro da aba de questões. Subvídeos e questões possuem um nível de visibilidade para restringir que materiais muito complexos ou muito simples apareçam para o usuário que assiste ao curso. A figura XXX apresenta a página de composição de um hypervídeo com dois subvídeos (fig. XXXa) e 3 questões (fig. XXXb) e o grafo de conexões do hypervídeo (fig. XXXc).
+\begin{figure}[h!]
+  	\centering
+  	\begin{subfigure}{.5\textwidth}
+  		\centering
+  		\includegraphics[width=.95\linewidth]{figuras/autoria_construcao_a.eps}
+  		\caption{subvídeos carregados}
+  		\label{fig:autoria_construcao_a}
+	\end{subfigure}%
+	\begin{subfigure}{.5\textwidth}
+  		\centering
+  		\includegraphics[width=.95\linewidth]{figuras/autoria_construcao_b.eps}
+  		\caption{Questões criadas}
+  		\label{fig:autoria_construcao_b}
+	\end{subfigure}%
+  	\caption{Funções do módulo de autoria no nível de construção do hypervideo}
+  	\label{fig:autoria_construcao}
+\end{figure}
+
+Subvídeos são criados por meio do carregamento de arquivos de vídeo do computador do autor do curso na aba de vídeos e criam automaticamente questões vinculadas. O sistema permite também que mais questões sejam criadas dentro da aba de questões. 
+
+Subvídeos e questões possuem um nível de visibilidade para restringir que materiais muito complexos ou muito simples apareçam para o usuário que assiste ao curso. A figura \ref{fig:autoria_construcao} apresenta a página de composição de um hypervídeo com três subvídeos (fig. \ref{fig:autoria_construcao_a}) e três questões (fig. \ref{fig:autoria_construcao_b}), ao fundo da figura é possível ver o grafo de conexões do hypervideo.
+
+Após a construção de todos os hypervídeos, o autor poderá publicar o curso na rede. A partir desse momento, outros usuários poderão assistir ao material contruído. Essa parte da interação é apresentada no tópico seguinte, a respeito do módulo de visualização adaptativa.
+
 \subsection{Módulo de Visualização Adaptativa}
 
+O módulo de visualização adaptativa permite que o usuário assista a um curso disponibilizado na rede de acordo com seu nível no sistema. As operações executadas pelo usuário neste módulo começam do momento da busca por um curso. Na página "Explorar", é possível assistir a um curso ou adicioná-lo a biblioteca para assistir depois, como mostrado a figura \ref{fig:explorar}.
+
+\begin{figure}[h!]
+  	\centering
+  	\includegraphics[width=.6\linewidth]{figuras/explorar.eps}
+  	\caption{Página de busca por cursos}
+  	\label{fig:explorar}
+\end{figure}
+
+Quando o usuário opta por assistir a um curso, ele é direcionado para a página de apresentação do curso, como mostra a figura \ref{fig:apresentar}. Nesse ambiente, o usuário é capaz de responder às questões propostas pelo professor, selecionar subvídeos de sua preferência para assistir e visualizar seu progresso no fluxo do curso.  
+
+\begin{figure}[h!]
+  	\centering
+  	\includegraphics[width=.9\linewidth]{figuras/apresentar.eps}
+  	\caption{Módulo de visualização adaptativa}
+  	\label{fig:apresentar}
+\end{figure}
+
+O módulo de visualização possui um componente para que o usuário possa fazer anotações sobre o hypervídeo, que servem de suporte para o aprendizado do conteúdo apresentado. É importante ressaltar que a adaptação do conteúdo foi alcançada por meio do filtro dos subvídeos e questões segundo o perfil do usuário, estes aparecem nas abas ao lado do reprodutor de vídeo, juntamente com o mapa do curso.
+
 \subsection{Mecanismo de Quantização por meio da QRN}
+
+O mecanismo de quantização permite que a navegação entre hypervídeos de um curso seja adaptativa de acordo com os escores obtidos pelo estudante nos hypervideos, a confiabilidade da avaliação, o decaimento temporal e as ligações que o hypervideo possui. Esse cálculo é feito unicamente no servidor, que envia a resposta das operações para o cliente, permitindo assim, que outros hypervídeos sejam indicados pelo sistema. 
+
+O \textit{Meteor} permite essas operações por meio de métodos (i.e. \textit{Meteor Methods}) que são executados unicamente no servidor e simulados no cliente, que é atualizado quando a operação no servidor é concluída e devolvida. Na arquitetura do sistema, esses métodos são chamados pelo modelo, o que faz sentido, já que são operações da lógica do domínio da aplicação. Essas operaçõs compõem a parte do modelo que está definida no servidor. O componente de apresentação dos hypervídeos sugeridos pelo sistema aparecem como mostrado na figura XXX.
