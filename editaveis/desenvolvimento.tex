@@ -364,4 +364,13 @@ O módulo de visualização possui um componente para que o usuário possa fazer
 
 O mecanismo de quantização permite que a navegação entre hypervídeos de um curso seja adaptativa de acordo com os escores obtidos pelo estudante nos hypervideos, a confiabilidade da avaliação, o decaimento temporal e as ligações que o hypervideo possui. Esse cálculo é feito unicamente no servidor, que envia a resposta das operações para o cliente, permitindo assim, que outros hypervídeos sejam indicados pelo sistema. 
 
-O \textit{Meteor} permite essas operações por meio de métodos (i.e. \textit{Meteor Methods}) que são executados unicamente no servidor e simulados no cliente, que é atualizado quando a operação no servidor é concluída e devolvida. Na arquitetura do sistema, esses métodos são chamados pelo modelo, o que faz sentido, já que são operações da lógica do domínio da aplicação. Essas operaçõs compõem a parte do modelo que está definida no servidor. O componente de apresentação dos hypervídeos sugeridos pelo sistema aparecem como mostrado na figura XXX.
+\begin{figure}[h!]
+  	\centering
+  	\includegraphics[width=.5\linewidth]{figuras/quantizacao.eps}
+  	\caption{Componente de apresentação dos hypervideos indicados}
+  	\label{fig:quantizacao}
+\end{figure}
+
+O \textit{Meteor} permite essas operações por meio de métodos (i.e. \textit{Meteor Methods}) que são executados unicamente no servidor e simulados no cliente, que é atualizado quando a operação no servidor é concluída e devolvida. Na arquitetura do sistema, esses métodos são chamados pelo modelo, o que faz sentido, já que são operações da lógica do domínio da aplicação. Essas operaçõs compõem a parte do modelo que está definida no servidor. O componente de apresentação dos hypervídeos sugeridos pelo sistema aparecem como mostrado na figura \ref{fig:quantizacao}.
+
+Apesar do componente de apresentação dos hypervídeos indicados estar construído, até o momento da escrita deste trabalho não foi possível validar a implementação da QRN com um curso real no sistema, apenas por meio de inspeção e validação das euqações utilizadas. Isso devido a adequação dos coeficientes para indicação da direção da evolução no curso e também devido ao coeficiente relacionado aos blocos coesos, que são representados por meio das ligações diretas entre entre hypervídeos, que necessitam ser calibrados para não impossibilitarem que outros nodos da rede sejam acessados também.
