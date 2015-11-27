@@ -2,12 +2,49 @@
 
 \partapendices
 
-\chapter{Lista de Ferramentas e Plugins}
+\chapter{Suporte Tecnológico}
 
-Texto do primeiro apêndice.
+Este apêndice descreve todas as ferramentas utilizadas ao longo deste trabalho.
 
-\chapter{Segundo Apêndice}
+\section{Ferramentas de Suporte ao Desenvolvimento}
+\begin{itemize}
+	\item \textbf{Homebrew:} Gerenciador de pacotes para ambientes OS X.
+	\item \textbf{Curl:} Aplicação para transferência de dados com syntaxe de URL. Permite a instalação de pacotes e ferramentas.
+	\item \textbf{Node.js:} Aplicação para construção de sistemas \textit{web}, possui vários utilitários, e é necessário para instalação do \textit{npm}.
+	\item \textbf{npm:} \textit{Node Package Manager} utilizado para gerenciar não só pacotes do node, mas também pacotes de várias aplicações \textit{JavaScript}.
+	\item \textbf{MongoDB:} Sistema gerenciador de banco de dados orientado a documentos, sendo utilizado como SGBD padrão para aplicações \textit{Meteor}.
+	\item \textbf{Meteor:} \textit{Framework} para desenvolvimento de aplicativos e sistemas \textit{web} reativos. 
+	\item \textbf{Polymer:} Ferramenta utilizada para a componentização da interface da aplicação.
+	\item \textbf{Bower:}  Ferramenta utilizada para gerenciamento de componentes \textit{Polymer}.
+	\item \textbf{Meteorite:} Instalador de pacotes do \textit{Meteor}.
+	\item \textbf{Velocity:} \textit{Framework} de testes para \textit{Meteor}.
+	\item \textbf{ESlint:} Ferramenta para análise estática de código \textit{JavaScript}.
+	\item \textbf{Kadira:} Ferramenta para análise de desempenho para aplicações \textit{Meteor}.
+	\item \textbf{Mocha:} Motor de testes para aplicações \textit{JavaScript}.
+	\item \textbf{Astronomy:} Biblioteca para separação da camada de modelo para aplicações \textit{Meteor}.
+	\item \textbf{Accounts-password:} Biblioteca para gerenciamento de contas de usuários para \textit{Meteor}.
+	\item \textbf{Web-component-tester:} Ferramenta de testes unitários para componentes \textit{Polymer}.
+	\item \textbf{Web-component-tester-istanbul:} Gerador de relatório de cobertura de código para componentes \textit{Polymer}.
+	\item \textbf{cfs-standard-packages:} Pacotes \textit{Meteor} para gerenciamento de arquivos de mídia, no caso, vídeos.
+	\item \textbf{cfs-gridfs:} Pacote \textit{Meteor} para persistência de arquivos de mídia em um banco GridFS MongoDB.
+	\item \textbf{Search Source:} Pacote para facilitar a criação de \textit{queries} de busca reativas em aplicações \textit{Meteor}.
+	\item \textbf{Iron-router:} Pacote de gerenciamento de rotas para aplicações \textit{Meteor}. 
+	\item \textbf{publish-composite:} Pacote para criação de composições em \textit{queries} recursivas para aplicações \textit{Meteor}. 
+\end{itemize}
 
-Texto do segundo apêndice.
+\section{Ferramentas para Ambiente de Integração contínua}
+
+O ambiente de integração contínua utilizou todas as ferramentas necessárias no desenvolvimento, além das seguintes:
+
+\begin{itemize}
+	\item \textbf{Jenkins:}	Ambiente de Integração Contínua. 
+	\item \textbf{Jenkins Git Plugin:}	Permite que operações do git possam ser feitas no \textit{script} de Integração contínua.
+	\item \textbf{Jenkins Github Plugin:}	Permite vincular \textit{jobs} do jenkins com repositórios no \textit{Github}.
+	\item \textbf{Jenkins Checkstyle Plugin:} Permite o acompanhamento de relatórios de aderência do código aos padrões.
+	\item \textbf{Jenkins Violations Plugin:} Gera gráficos e indicadores de qualidade de código.
+	\item \textbf{Jenkins External Monitor Job Type Plugin:} Permite que \textit{jobs} do Jenkins sejam disparados por operações externas, como \textit{pushes} no repositório do projeto.
+	\item \textbf{Jenkins Embeddable Build Status:} Permite que o status atual da \textit{build} do projeto seja vinculado a qualquer página externa.  
+	\item \textbf{PhantomJS 2.0:} Navegador \textit{JavaScript} sem interface gráfica, utilizado para rodar testes de interface sem renderização.
+\end{itemize}
 
 \end{apendicesenv}
