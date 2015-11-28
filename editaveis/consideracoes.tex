@@ -1,20 +1,27 @@
 \chapter[Considerações Finais]{Considerações Finais}
 
+Neste capítulo são apresentadas as considerações a respeito da pesquisa executada dos pontos de vista dos objetivos esperados e das oportunidades para trabalhos futuros.
+
+\section{Objetivos da Pesquisa}
+
 Após a revisão bibliográfica, foi possível verificar que os estudos sobre Sistemas de Hipermídias Adaptativas e Objetos de Aprendizagem, em especial vídeos interativos, estão bastante avançados. Entretanto, apenas nos últimos anos houve uma aproximação entre as áreas. Além disso, a desmotivação dos professores, o desnível entre os ingressantes e o alto nível de reprovações aparecem como fatores críticos para a desistência de estudantes nos cursos relacionados a engenharia\cite{silva2005}. 
 
 A construção de sistemas educativos adaptativos aparece como uma boa proposta para a diminuição do desnível entre estudantes e como ferramenta motivadora para alunos mais avançados, unindo recentes pesquisas sobre objetos de aprendizagem (OA) e sistemas de hipermídias adaptativas (SHA). Porém, é necessário prover mecanismos para que professores possam criar os materiais educativos nesses sistemas.
 
-Nesse sentido, este trabalho apresentou as teorias relacionadas ao desenvolvimento de sistemas adaptativos e, em especial, a teoria de quantização de redes por nodos (QRN), que permite a construção de uma navegação global adaptativa para a rede de um curso. Essa teoria embasou o desenvolvimento do sistema, levando em consideração elementos importantes no âmbito da engenharia de \textit{software}, como arquitetura, testes, gerência de configuração e métodos ágeis. 
+Este trabalho apresentou as teorias relacionadas ao desenvolvimento de sistemas adaptativos e, em especial, a teoria de quantização de redes por nodos (QRN), que permite a construção de uma navegação global adaptativa para a rede de um curso. Essa teoria embasou o desenvolvimento do sistema, levando em consideração elementos importantes no âmbito da engenharia de \textit{software}, como arquitetura, testes, gerência de configuração e métodos ágeis. 
 
-Sob o ponto de vista dos objetivos do trabalho, foi possível desenvolver um módulo de autoria de cursos compostos por vídeos interativos para que professores possam contribuir para a construção de uma base de cursos \textit{online} com o propósito de motivar e melhor nivelar estudantes. Foi desenvolvido também um módulo de visualização adapativa que, no momento, dá suporte apenas à ocultabilidade, mas que permite ao professor utilizar conceitos mais elaborados, como organizadores prévios, diferenciação progressiva ou ainda a reconciliação integrativa definidos por \citeonline{ausubel2000}.
+Sob o ponto de vista dos objetivos do trabalho, foi possível desenvolver um módulo de autoria de cursos compostos por vídeos interativos para que professores possam contribuir para a construção de uma base de cursos \textit{online} com o propósito de motivar e melhor nivelar estudantes. Foi desenvolvido também um módulo de visualização adapativa que, no momento, dá suporte apenas à ocultabilidade, mas que permite ao professor utilizar conceitos mais elaborados, como organizadores prévios, diferenciação progressiva ou ainda a reconciliação integrativa definidos por \citeonline{ausubel2000}. No que diz respeito a navegação global adaptativa, foi possível implementar os algorítmos relacionados à QRN e testá-los unitariamente, verificando o comportamento de cada equação, mas não integralmente, dado que durante o tempo de desenvolvimento do sistema, não se conseguiu calibrar os coeficientes relacionados a direção e blocos coesos. 
 
-No que diz respeito a navegação global adaptativa, foi possível implementar os algorítmos relacionados a quantização e testá-los unitáriamente, verificando o comportamento separado de cada equação, mas não o seu comportamento integrado, dado que durante o tempo de desenvolvimento do sistema, não se conseguiu calibrar os coeficientes relacionados a direção e blocos coesos.
+
+\section{Trabalhos Futuros}
 
 Conforme esperado com o desenvolvimento desta pesquisa, surgiram vários pontos de melhoria da plataforma que não puderam ser adicionados ao desenvolvimento, devido ao escopo e tempo disponíveis. Um deles foi a verificação das teorias relacionadas à composição de vídeos interativos que incluem controle temporal e anotações no momento da construção do material, são elas as teorias dos hipervídeos \cite{Sadallah2012}.
 
 Devido à organização da arquitetura do sistema, as modificações exigidas para a implementação de estruturas que permitam a utilização dessas teorias não seriam muito grandes e impactariam mais na lógica da visão, em componentes \textit{Polymer}, do que nas camadas do modelo ou do controle.
 
 Ainda com a utilização das teorias de hipervídeos, outros elementos mais complexos definidos por \citeonline{ausubel2000} poderiam ser incorporados ao sistema, como os organizadores prévios, o que possibilita a diminuição do esforço do professor para a criação de cursos.
+
+No sentido da adaptação, tanto do conteúdo quanto da navegação, como trabalho futuro é necessário que se defina categorias para os perfis de usuário e também que ocorra a verificação das mudanças sofridas pelo estudante, adequando-o de acordo com o seu avanço no uso do sistema. Para essa finalidade, podem ser utilizadas teorias relacionadas a Sistemas Tutores Inteligentes (STI) que monitorem a evolução dos estudantes na plataforma e que possibilitem a seleção de materiais diferenciados segundo cada perfil, como questões para avaliação ou vídeos com abordagens de ensino diferentes \cite{fragelli2010}.
 
 Além dos fatores relacionados às teorias de aprendizagem estudadas, existem as questões da engenharia de software aplicadas à plataforma desenvolvida. O propósito do desenvolvimento foi prover uma arquitetura estável que fosse passível de atualizações na visão sem que o modelo ou o controle fossem modificados, já que novas teorias de apresentação de conteúdo podem vir a substituir a proposta desenvolvida até o momento.
 
