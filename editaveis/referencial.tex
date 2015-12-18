@@ -168,69 +168,61 @@ A hierarquia de blocos é também abordada no momento da confecção dos vídeos
 
 \subsection{Avaliação e Confiabilidade}
 
-A quantização da rede está diretamente relacionada à avaliação e à confiabilidade dos nodos que a compõem, o cálculo para ambos os valores é feito em duas etapas: direta e indireta. A avaliação direta ocorre quando um estudante responde uma questão do nodo em que se encontra. Isto é, o estudante é avaliado pelo sistema por meio de sua resposta, essa avaliação direta é sucedida pela avaliação indireta do nodo, que corresponde as operações de fecho, e representa os processos de inferência sobre a rede para tentar prever estados futuros. O resultado A da avaliação do nodo é dado pela média ponderada das notas das avaliações direta e indireta, como segue:
+A quantização da rede está diretamente relacionada à avaliação e à confiabilidade dos nodos que a compõem. O cálculo para ambos os valores é feito em duas etapas: direta e indireta. A avaliação direta ocorre quando um estudante responde uma questão do nodo em que se encontra. Isto é, o estudante é avaliado pelo sistema por meio de sua resposta, essa avaliação direta é sucedida pela avaliação indireta do nodo, que corresponde as operações de fecho, e representa os processos de inferência sobre a rede para tentar prever estados futuros. O resultado \(A\) da avaliação do nodo é dado pela média ponderada das notas das avaliações direta (\(A_0\)) e indireta (\(A_{0M}\)), tendo como fator de ponderação a confiabilidade (\(C\)), como mostra a Equação 1.1.
 
 \begin{equation}
-	A = C_{0}A_{0} + (1 - C_{0})A_{0M}
+	A = CA_{0} + (1 - C)A_{0M}
 \end{equation}
-
-Para o cálculo da avaliação indireta, utiliza-se a nota da avaliação do nodo de origem \(A_{1}\) e uma constante \( k_{a},(0 < k_{a} < 5) \), que representa o grau de liberdade para se alterar a nota \(A_{0}\) do nodo. Como na fórmula:
-
+Para o cálculo da avaliação indireta, utiliza-se a nota da avaliação do nodo de origem \(A_{1}\) e uma constante \( k_{a},(0 < k_{a} < 5) \), que representa o grau de liberdade para se alterar a nota \(A_{0}\) do nodo, como apresentado na Equação 1.2.
 \begin{equation}
 	A_{0M} =  A_{0} + (A_{1} - A_{0})\frac{k_{a}}{5}
 \end{equation}
 
-O valor da avaliação direta é a média aritmética das notas das questões respondidas do nodo. Por exemplo, se um nodo da rede possui sete questões, o estudante respondeu apenas quatro e tirou nota seis em duas delas e oito nas outras duas, a nota da avaliação direta então será sete. As outras três questões que não foram respondidas não influenciam diretamente o cálculo da avaliação, mas servem para o cálculo da confiabilidade. A avaliação final calculada e finalmente dada por:
-
+O valor da avaliação direta é a média aritmética das notas das questões respondidas do nodo. Por exemplo, se um nodo da rede possui sete questões, o estudante respondeu apenas quatro e tirou nota seis em duas delas e oito nas outras duas, a nota da avaliação direta então será sete. As outras três questões que não foram respondidas não influenciam diretamente o cálculo da avaliação, mas servem para o cálculo da confiabilidade. A avaliação final calculada e finalmente dada pela Equação 1.3.
 \begin{equation}
-	 A_{0}=C_{0} A_{0} + (1- C_{0}) \bigg( A_{0}+(A_{1}-A_{0}) \frac{k_{a}}{5} \bigg)
+	 A_{0}=C A_{0} + (1- C) \bigg[ A_{0}+(A_{1}-A_{0}) \frac{k_{a}}{5} \bigg]
 \end{equation}
 
-A confiabilidade \(C_{0}\) do nodo é calculada também por meio de uma média ponderada das duas etapas, direta e indireta. Como mostra a equação:
-
+A confiabilidade \(C\) do nodo é calculada também por meio de uma média ponderada das duas etapas, direta e indireta, como mostra a Equação 1.4.
 \begin{equation}
-	C_{0}= \frac{(n_a+1) C_0+C_{0M}}{n_a+2}
+	C = \frac{(n_a+1) C_0+C_{0M}}{n_a+2},
 \end{equation}
+onde \(n_a\) é o número de questões respondidas pelo usuário, \(C_0\) representa a confiabilidade anterior do nodo e \(C_{0M}\) é a confiabilidade da avaliação indireta proposta, que deve aumentar nos casos em que \(A_0\) for um valor próximo de \(A\) e diminuir nos casos em que \(A_0\) e \(A\) forem muito distantes.
 
-Em que \(n_a\) é o número de questões respondidas pelo usuário, \(C_0\) representa a confiabilidade anterior do nodo, \(C_{0M}\) é a confiabilidade da avaliação indireta proposta, que deve aumentar nos casos em que \(A_0\) for um valor próximo de \(A\) e diminuir nos casos em que \(A_0\) e \(A\) forem muito distantes.
-
+A confiabilidade direta do nodo (\(\rho_{KR21}\)) é calculada por meio de uma inferência estatística, avaliando a correlação de todas as questões da avaliação, questão a questão. Isso é feito por meio da fórmula 21 de correlação de Kuder-Richardson, como mostra a Equação 1.5
 \begin{equation}
-	\rho_{KR21} = \frac{k}{(k-1)} \bigg(1- \frac{M(k-M)}{ks_{xx}^{2}} \bigg) 
+	\rho_{KR21} = \frac{k}{(k-1)} \bigg[1- \frac{\mu(k-\mu)}{k\sigma^{2}} \bigg],
 \end{equation}
-
-Na qual, \(k\) é o número de questões, \(M\) é a média dos escores obtidos pelos alunos e \(s_{xx}^{2}\) é a variância corrigida em torno da média, dada por:
-
+onde \(k\) é o número de questões, \(\mu\) é a média dos escores obtidos pelos alunos e \(\sigma^{2}\) é a variância corrigida em torno da média, dada pela Equação 1.6
 \begin{equation}
-	s_{xx}^{2} =  \frac{\sum{x^2}}{n-1}
+	\sigma^{2} =  \frac{\sum{x^2}}{n-1},
 \end{equation}
-
-Em que \(x\) representa a diferença entre o escore do estudante e a média dos estudantes para aquela questão. Nesse sentido, é possível ver que as questões que não foram respondidas terão um valor \(x\) muito alto, o que influencia negativamente no resultado confiabilidade.
+onde \(x\) representa a diferença entre o escore do estudante e a média dos estudantes para aquela questão. Nesse sentido, é possível ver que as questões que não foram respondidas terão um valor \(x\) muito alto, o que influencia negativamente no resultado confiabilidade.
 	
-Da mesma forma, para o cálculo da confiabilidade da avaliação indireta, a distância entre os escores do estudante deve ser levada em consideração, já que, se houver uma variação muito grande entre duas avaliações, isso implica em uma confiabilidade baixa. Além disso, o próprio valor da confiabilidade do nodo de origem influencia o cálculo da nova confiabilidade, como é mostrado abaixo:
-
+Da mesma forma, para o cálculo da confiabilidade da avaliação indireta, a distância entre os escores do estudante deve ser levada em consideração, já que, se houver uma variação muito grande entre duas avaliações, isso implica em uma confiabilidade baixa. Além disso, o próprio valor da confiabilidade do nodo de origem influencia o cálculo da nova confiabilidade, como é mostrado na Equação 1.7.
 \begin{equation}
-	C_{0M} = C_1 (1-0,1|A_0 -  A_1 |) 
+	C_{0M} = C_1 \bigg(1- \frac{|A_0 -  A_1|}{10}\bigg) 
 \end{equation}
+É importante ressaltar que a avaliação de um nodo varia entre 0 e 10, por isso a diferença entre as avaliações \(A_0\) e \(A_1\) deve ser dividida por \(10\) para que o valor final da confiabilidade indireta \(C_{0M}\) esteja sempre em um intervalo entre 0 e \(C_1\).
 
-Para o cálculo final da confiabilidade, tem-se a seguinte fórmula:
+Para o cálculo final da confiabilidade, tem-se a Equação 1.8.
 
 \begin{equation}
-	C_0 = \frac{(n_a+1) C_0 + C_1 (1 - 0,1|A_0 - A_1|)}{ n_a+2 }
+	C = \frac{(n_a+1) C_0 + C_1 (1 - 0,1|A_0 - A_1|)}{ n_a+2 }
 \end{equation}
 
 \subsection{Influência Temporal}
 
-Para que a rede se adeque aos acessos atuais dos nodos, é realizado um decréscimo percentual da avaliação de um nodo quando um aluno não o acessa durante determinado período de tempo. A ideia é reduzir o grau de interferência das avaliações passadas sobre uma nova retomada do curso, quando o aluno passa algum tempo sem acessá-lo. Esse cálculo é feito da seguinte forma:
-
+Para que a rede se adeque aos acessos atuais dos nodos, é realizado um decréscimo percentual da avaliação de um nodo quando um aluno não o acessa durante determinado período de tempo. A ideia é reduzir o grau de interferência das avaliações passadas sobre uma nova retomada do curso, quando o aluno passa algum tempo sem acessá-lo. Esse cálculo é feito de acordo com a Equação 1.9.
 \begin{equation}
 	A=(1 - p_e)A_0 
 \end{equation}
-
+onde \( p_e\) é o fator de decaimento da avaliação e deve estar contido no intervalo \([0,1]\).
 \subsection{Quantização das Ligações entre Nodos}
 
-Como dito antes, a quantização da rede é gerada a partir da menor distância entre os nodos da rede. Esse cálculo é feito levando em consideração o campo tridimensional. Em um primeiro momento, todos os nodos da rede estão em ordem, em \(z=0\) e \(N4\) sendo o nodo atual. O exemplo considera três alterações de nível dos nodos da rede que se referem a blocos coesos, direção e avaliação.
+Como dito antes, a quantização da rede é gerada a partir da menor distância entre os nodos da rede. Esse cálculo é feito levando em consideração o campo tridimensional. Em um primeiro momento, todos os nodos da rede estão em ordem, em \(z=0\) e \(N_4\) sendo o nodo atual. O exemplo considera três alterações de nível dos nodos da rede que se referem a blocos coesos, direção e avaliação.
 
-Primeiramente o nodo \(N4\) é colocado em um nível superior da rede de modo que os outros nodos não ultrapassem o nodo atual após as modificações de suas posições (Fig. \ref{fig:subnodos1} ). Posteriormente, todos os nodos que pertencem ao mesmo bloco coeso de \(N4\) sofrem uma elevação de nível (Fig. \ref{fig:subnodos2} ).
+Primeiramente o nodo \(N_4\) é colocado em um nível superior da rede de modo que os outros nodos não ultrapassem o nodo atual após as modificações de suas posições (Fig. \ref{fig:subnodos1} ). Posteriormente, todos os nodos que pertencem ao mesmo bloco coeso de \(N_4\) sofrem uma elevação de nível (Fig. \ref{fig:subnodos2} ).
 
 \begin{figure}
 	\begin{subfigure}{.5\textwidth}
@@ -263,24 +255,20 @@ Primeiramente o nodo \(N4\) é colocado em um nível superior da rede de modo qu
 
 Considerando neste exemplo que o estudante tenha obtido um escore superior ou igual ao considerado satisfatório, todos os nodos posteriores ao atual sofrem uma elevação de nível (Fig. \ref{fig:subnodos3}), pois a direção da avaliação indica um avanço positivo. O próximo passo é reduzir proporcionalmente o nível dos nodos com base nas suas respectivas avaliações e confiabilidades (Fig. \ref{fig:subnodos4}).
 
-Com base na nova configuração obtida, basta fazer o cálculo da menor distância entre o nodo atual e os demais para se obter a quantização da rede, segundo a fórmula da menor distância para pontos tridimensionais. Sendo assim, podemos fazer a análise também para a distância ao quadrado, como mostrado:
-
+Com base na nova configuração obtida, basta fazer o cálculo da menor distância entre o nodo atual e os demais para se obter a quantização da rede, segundo a fórmula da menor distância para pontos tridimensionais. Sendo assim, podemos fazer a análise também para a distância ao quadrado, como mostrado na Equação 1.10.
 \begin{equation}
 	d^2 = (x_a-x_i)^2 +(y_a-y_i)^2 + (z_a-z_i)^2 
 \end{equation}
+onde (\(x_a,y_a,z_a\)) é a posição do nodo de origem e (\(x_i,y_i,z_i\)) é a posição de algum outro nodo da rede que se pretende calcular a distância. Essa teoria pode ser utilizada para redes \(n\)-dimensionais sem prejuízo, pois \(d^2\) é o quadrado da norma euclidiana do vetor distância entre dois nodos da rede \cite{fragelli2010}.
 
-Essa teoria pode ser utilizada então para redes \(n\)-dimensionais sem prejuízo, pois \(d^2\) é o quadrado da norma euclidiana do vetor distância entre dois nodos da rede \cite{fragelli2010}.
-
-Para que aconteça a quantização da rede, é preciso definir os coeficientes de alteração do nível z e de posicionamento \((x_a,y_a)\) para os nodos, com a finalidade de gerar uma modelagem flexível para diferentes modelos pedagógicos. \citeonline{fragelli2010} ratifica essa afirmação por meio da apresentação de duas propostas de redes quantizadas: behaviorista e cognitivista.
+Para que aconteça a quantização da rede, é preciso definir os coeficientes de alteração do nível \(z\) e de posicionamento \((x_a,y_a)\) para os nodos, com a finalidade de gerar uma modelagem flexível para diferentes modelos pedagógicos. \citeonline{fragelli2010} ratifica essa afirmação por meio da apresentação de duas propostas de redes quantizadas: behaviorista e cognitivista.
 
 \subsection{Rede Behaviorista Quantizada}
 
-Para uma rede behaviorista, os nodos estão alinhados em x e são dados pelos valores definidos pelo professor ao compor seu curso. Desse modo, a quantização está relacionada à análise de z para o posicionamento dos nodos:
-
+Para uma rede behaviorista, os nodos estão alinhados em x e são dados pelos valores definidos pelo professor ao compor seu curso. Desse modo, a quantização está relacionada à análise de \(z\) para o posicionamento dos nodos como apresentado na Equação 2.11.
 \begin{equation}
 	(x,y,z)=(x_a,0,\sum_{i=1}^{m} k_i ) 
 \end{equation}
-
 Fragelli propõe a utilização de três coeficientes \(k_i\) para a quantização da rede:
 
 \begin{itemize}
@@ -290,52 +278,43 @@ Fragelli propõe a utilização de três coeficientes \(k_i\) para a quantizaç�
 \end{itemize}
 
 O coeficiente \(k_1\) avalia se um nodo faz parte do mesmo bloco coeso do nodo atual \(N_a\) e define um limite superior de modo que os nodos externos ao bloco coeso não fiquem impedidos de serem acessados.
-
-\[
-	(k_1)_i =	\left\{
+\begin{equation}
+	k_1(N_i) =	\left\{
 	\begin{array}{ll}
-	    \, p \sum_{j=1}^{k} N_j & \quad \text{ se } N_j \in \text{blocos coesos de } N_a  \\
+	    \, p \sum_{j=1}^{k} N_j & \quad \forall N_j \in S(N_a,N_i) \\
 		\, 0  & \quad \text{ c.c. } \\
   	\end{array}
   	\right.
-\]
-
-Nesta equação é possível verificar que \(N_a\) pode pertencer a mais de um bloco coeso e que o coeficiente \(k_1\) do nodo \(N_i\) é o somatório dos elementos dos blocos coesos que contenham \(N_a\) e \(N_i\). Para o escopo deste trabalho, o professor deverá se encarregar de gerar esse coeficiente por meio das distâncias entre os nodos no momento da criação de um curso. Entretanto, este conceito é importante para se entender a possibilidade de adequação da rede para a inserção de um agente pedagógico que possa gerar esses coeficientes analisando a interação do usuário na rede. 
+\end{equation}
+Na Equação 1.12 \(S(N_a,N_i)\) é o conjunto de blocos coesos que contém \(N_a\) e \(N_i\), já que podem pertencer a mais de um bloco coeso e \(k_1\) é o coeficiente do nodo \(N_i\) calculado por meio do somatório dos elementos de blocos coesos que contenham \(N_a\) e \(N_i\). Para o escopo deste trabalho, o professor deverá se encarregar de gerar esse coeficiente por meio das ligações entre os nodos no momento da criação de um curso. Entretanto, este conceito é importante para se entender a possibilidade de adequação da rede para a inserção de um agente pedagógico que possa gerar esses coeficientes analisando a interação do usuário na rede. 
 
 O coeficiente \(p\) está associado ao objetivo do aluno ao acessar um curso, se ele fizer parte do público-alvo para qual o curso foi designado, este aluno poderá seguir o planejamento normal do curso, acessando ordenadamente os nodos.
 
-O coeficiente \(k_2\) é calculado segundo a avaliação do nodo atual \(N_a\) e o fluxo normal indicado pelo autor. Para um nodo \(N_i\), o valor de \(k_2\) é dado por:
-
-\[
-	(k_2)_i =	\left\{
+O coeficiente \(k_2\) é calculado segundo a avaliação do nodo atual \(N_a\) e o fluxo normal indicado pelo autor. Para um nodo \(N_i\), o valor de \(k_2\) é dado pela Equação 1.13.
+\begin{equation}
+	k_2(N_i) =	\left\{
 	\begin{array}{ll}
-	    \, v 	& \quad \text{ se }  A_{N_a} \ge  p_b\varepsilon_{N_a}  \text{ e } x_{N_j} > x_{N_a}  \\
-	    \, v 	& \quad \text{ se }  A_{N_a} < p_b\varepsilon_{N_a}  \text{ e } x_{N_j} < x_{N_a}  \\
+	    \, v 	& \quad \text{ se }  A_{N_a} \ge  p_b\varepsilon_{N_a}  \text{ e } x_{N_i} > x_{N_a}  \\
+	    \, v 	& \quad \text{ se }  A_{N_a} < p_b\varepsilon_{N_a}  \text{ e } x_{N_i} < x_{N_a}  \\
 	    	\, 0  	& \quad \text{ c.c. } \\
   	\end{array}
   	\right.
-\]
+\end{equation}
+Para determinação do valor de \(v\), deve-se verificar o valor necessário para provocar uma tendência de seguir o fluxo normal do curso. Para isso é necessário treinar a rede, semelhante ao processo de treinamento das redes neurais. O coeficiente \(p_b\) indica qual o percentual da expertise \(\varepsilon_{N_a}\) seria suficiente para uma avaliação satisfatória do nodo. É importante perceber que o coeficiente \(v\) depende da avaliação ser satisfatória e do nodo \(N_i\) anteceder ou proceder ao nodo \(N_a\), pois uma avaliação não satisfatória deve indicar que nodos antecedentes devem ser acessados. Nessa mesma lógica, nodos posteriores devem ser indicados caso a avaliação do nodo \(N_a\) seja satisfatória.
 
-Para determinação do valor de v, deve-se verificar o valor necessário para provocar uma tendência de seguir o fluxo normal do curso, para isso é necessário treinar a rede, semelhante ao processo de treinamento das redes neurais. O coeficiente \(p_b\) indica qual o percentual da expertise \(\varepsilon_{N_a}\) seria suficiente para uma avaliação satisfatória do nodo.
-
-O coeficiente \(k_3\) tem o objetivo de diminuir a chance de um nodo com avaliação satisfatória e confiabilidade alta ser acessado. Sendo assim, este coeficiente é dependente dos valores de \(k_1\) e \(k_2\) calculados anteriormente. A solução proposta por Fragelli envolve a relação linear:
-
-
-\[
-	(k_3)_i = - \min \Bigg(  \frac{\min( \frac{C_{N_j}}{C_0} , 1)A_{N_j}}{p_b\varepsilon_{N_j}} , 1  \Bigg)(k_1 + k_2)
-\]
-
-Desse modo, se um nodo possui avaliação satisfatória e confiabilidade superior à confiabilidade mínima \(C_0\) o valor de \(k_3\) será \(-(k_1+k_2)\) e o nodo retornará para \(z=0\). Em qualquer outra situação, a redução será proporcional aos valores da avaliação e da confiabilidade do nodo \(N_j\).
+O coeficiente \(k_3\) tem o objetivo de diminuir a chance de um nodo com avaliação satisfatória e confiabilidade alta ser acessado. Sendo assim, este coeficiente é dependente dos valores de \(k_1\) e \(k_2\) calculados anteriormente. A solução proposta por Fragelli envolve a relação linear demostrada na Equação 1.14.
+\begin{equation}
+	k_3(N_i) = - \min \Bigg(  \frac{\min( \frac{C_{N_j}}{C_0} , 1)A_{N_j}}{p_b\varepsilon_{N_j}} , 1  \Bigg)(k_1 + k_2)
+\end{equation}
+Desse modo, se um nodo possui avaliação satisfatória e confiabilidade superior à confiabilidade mínima \(C_0\), o valor de \(k_3\) será \(-(k_1+k_2)\) e o nodo retornará para \(z=0\). Em qualquer outra situação, a redução será proporcional aos valores da avaliação e da confiabilidade do nodo \(N_i\).
 
 \subsection{Rede Ausubeliana Quantizada}
 
-No caso de uma rede levando em consideração a teoria de Ausubel, são utilizados os mesmos coeficientes de nível da rede behaviorista, com uma modificação que é a utilização das posições dos nodos no mapa conceitual construído pelo professor. Assim, a distribuição espacial dos nodos no momento da construção do curso é bastante útil na quantização da rede que ficaria:
-
+No caso de uma rede levando em consideração a teoria de Ausubel, são utilizados os mesmos coeficientes de nível da rede behaviorista, com uma modificação que é a utilização das posições dos nodos no mapa conceitual construído pelo professor. Assim, a distribuição espacial dos nodos no momento da construção do curso é bastante útil na quantização da rede que assumiria a forma da Equação 1.15.
 \begin{equation}
-	(x,y,z)=(x_a,y_a,\sum_{i=1}^{m} k_i ) 
+	(x,y,z)=(x_a,y_a,\sum_{i=1}^{m} k_i ),
 \end{equation}
-
-Onde \((x_a,y_a)\) representam a posição do nodo no mapa conceitual da rede. O grande avanço desta proposta é a possibilidade da modificação do mapa conceitual para cada estudante distinto que acessa a rede, suas características influenciam também a disposição dos elementos. Uma grande discussão sobre o uso dos mapas conceituais é que o mapa conceitual construído pelo professor nem sempre representa o mapa que seria feito pela estrutura cognitiva do estudante, por isso é importante o desenvolvimento de um sistema que permita a adaptação do mapa conceitual segundo as impressões do estudante.
+onde \((x_a,y_a)\) representam a posição do nodo no mapa conceitual da rede. O grande avanço desta proposta é a possibilidade da modificação do mapa conceitual para cada estudante distinto que acessa a rede, suas características influenciam também a disposição dos elementos. Uma grande discussão sobre o uso dos mapas conceituais é que o mapa conceitual construído pelo professor nem sempre representa o mapa que seria feito pela estrutura cognitiva do estudante, por isso é importante o desenvolvimento de um sistema que permita a adaptação do mapa conceitual segundo as impressões do estudante.
 
 Com base no aporte teórico educacional apresentado, é necessário compreender também os métodos e técnicas do estudo em engenharia de software que proporcionem meios suficientes para que o sistema proposto possa ser desenvolvido, sendo estes apresentados a seguir.
 
@@ -345,8 +324,7 @@ Ao passo que os sistemas de software se desenvolvem em tamanho e complexidade, o
 
 Este nível de projeto de software possui um grande conjunto de trabalho, decisões sobre padrões de projeto, utilização de paradigmas, \textit{frameworks} e modelos arquiteturais que são de suma importância para redução de retrabalhos e aumento da qualidade e manutenabilidade do produto final \cite{krasner1988}.
 
-O modelo arquitetural MVC (do inglês \textit{Model - View - Controller}) é um estilo fundamentado no modelo de arquitetura em camadas, primeiramente idealizado por \citeonline{reenskaug1979} em 1978 para um projeto específico chamado \textit{Smalltalk}. Tendo como objetivo separar o modelo de negócio abordado no sistema (camada \textit{Model}), da camada de interface com o usuário (\textit{View}), permitindo que esse modelo possa ser exibido de inúmeras e diferentes formas sem ter conhecimento de quem o está exibindo \cite{krasner1988}. A fig. \ref{fig:krasner} ilustra o funcionamento da arquitetura MVC e as interfaces entre camadas. 
-
+O modelo arquitetural MVC (do inglês \textit{Model - View - Controller}) é um estilo fundamentado no modelo de arquitetura em camadas, primeiramente idealizado por \citeonline{reenskaug1979} para um projeto específico chamado \textit{Smalltalk}. Tendo como objetivo separar o modelo de negócio abordado no sistema (camada \textit{Model}), da camada de interface com o usuário (\textit{View}), permitindo que esse modelo possa ser exibido de inúmeras e diferentes formas sem ter conhecimento de quem o está exibindo \cite{krasner1988}. A Fig. \ref{fig:krasner} ilustra o funcionamento da arquitetura MVC e as interfaces entre camadas. 
 
 \begin{figure}[h!]
 	\centering
@@ -358,11 +336,11 @@ O modelo arquitetural MVC (do inglês \textit{Model - View - Controller}) é um 
 
 Para manter todas as \textit{Views} e \textit{Controllers} atualizadas segundo o estado da \textit{Model}, foi definida também a noção de dependência. Os objetos do tipo \textit{Controller} e \textit{View} são registrados em uma lista de dependentes na \textit{Model}, e quando ocorre alguma mudança no estado do modelo, estes são avisados através de troca de mensagens \cite{krasner1988}. 
 
-Anos depois, no final da década de 1980, o paradigma foi publicado como um padrão arquitetural para sistemas \textit{web}, no sentido de que é interessante que o modelo não conheça a forma de apresentação, já que uma página pode ser exibida em diferentes dispositivos com diferentes resoluções e proporções de tela, e que deve se comportar de forma diferente sem comprometer o bom funcionamento do sistema \cite{krasner1988}. Se tornando uma forte tendência para estas aplicações desde então.
+Anos depois, no final da década de 1980, o paradigma foi publicado como um padrão arquitetural para sistemas \textit{web}, no sentido de que é interessante que o modelo não conheça a forma de apresentação, já que uma página pode ser exibida em diferentes dispositivos com diferentes resoluções e proporções de tela, e que deve se comportar de forma diferente sem comprometer o bom funcionamento do sistema \cite{krasner1988}, se tornando uma forte tendência para estas aplicações desde então.
 
-Esta estrutura arquitetural foi utilizada inicialmente para renderização \textit{server-side} \cite{shabaitah2014}, ou seja, o processo digital sobre a página é feito no servidor que provê o serviço \textit{web}, sendo esta necessária, já que no início da década de 90, poucos computadores pessoais possuiam capacidade para executar o processamento das páginas depois de recebidas e que ainda hoje existem dispositivos com pouca capacidade de processamento que também fazem consultas a internet e dependem do servidor para renderização, como equipamentos de e-books e alguns smartphones\cite{baker2006}. 
+Esta estrutura arquitetural foi utilizada inicialmente para renderização \textit{server-side} \cite{shabaitah2014}, ou seja, o processo digital sobre a página é feito no servidor que provê o serviço \textit{web}, que no início da década de 90, poucos computadores pessoais possuiam capacidade para executar o processamento das páginas depois de recebidas e que ainda hoje existem dispositivos com pouca capacidade de processamento que também fazem consultas a internet e dependem do servidor para renderização, como equipamentos de \textit{e-books} e alguns \textit{smartphones}\cite{baker2006}. 
 
-Com o desenvolvimento de navegadores mais robustos e com funcionalidades diversas, construir aplicações que dependem de renderização no cliente se tornou não somente factivel, mas bastante popular \cite{google2015}. Nesse sentido o estilo arquitetural MVC para aplicações \textit{web} tem sofrido consideráveis mudanças, de modo que camadas da aplicação antes existentes apenas nos servidores passaram a executar papéis importantes também no cliente \cite{google2015}.
+Com o desenvolvimento de navegadores mais robustos e com funcionalidades diversas, construir aplicações que dependem de renderização no cliente se tornou não somente factível, mas bastante popular \cite{google2015}. Nesse sentido o estilo arquitetural MVC para aplicações \textit{web} tem sofrido consideráveis mudanças, de modo que camadas da aplicação antes existentes apenas nos servidores passaram a executar papéis importantes também no cliente \cite{google2015}.
 
 \begin{figure}[h!]
 	\centering
@@ -372,13 +350,13 @@ Com o desenvolvimento de navegadores mais robustos e com funcionalidades diversa
   	\label{fig:jsdata}
 \end{figure}
 
-A figura \ref{fig:jsdata} mostra o crescimento da popularidade de arquivos \textit{JavaScript} em páginas \textit{web}, linguagem mais comumente usada para aplicações que são executadas no lado do cliente e que podem também gerenciar renderização. 
+A Figura \ref{fig:jsdata} mostra o crescimento da popularidade de arquivos \textit{JavaScript} em páginas \textit{web}, linguagem mais comumente usada para aplicações que são executadas no lado do cliente e que podem também gerenciar renderização. 
 
 Com base no que foi apresentado, é possível encontrar na literatura várias formas de implementar uma arquitetura MVC com renderização no servidor, no cliente ou em ambos. A figura \ref{fig:mvc} a seguir ilustra alguns exemplos genéricos encontrados em ferramentas bastante utilizadas atualmente \cite{mejia2011, petitit2014, quinn2015}. 
 
 Uma arquitetura \textit{web} tradicional, utiliza em geral renderização no servidor e retorna a página pronta para o cliente que interage por meio de controles providos pelo navegador, redirecionando as requisições ao servidor, que executa o processamento e retorna uma nova página ao cliete após a resposta à requisição ser construída. Para essa estrutura, a cada ação do usuário, uma nova requisição é criada e existe uma latência considerável entre executar a requisição e receber a resposta novamente no cliente \cite{mejia2011}.
 
-Para uma arquitetura no cliente ou uma arquitetura mista, existem \textit{frameworks} que provêm recursos suficientes para persistencia e controle no cliente. No caso da arquitetura mista, podem existir APIs no servidor implementados em diversas linguagens para gerenciar requisições e envios de dados ao cliente, além da possibiliade de responderem uma página renderizada \cite{ petitit2014, quinn2015}. Já para aplicações que possuem um MVC completo no cliente, o servidor pode servir meramente como um banco de dados, que provê as informações necessárias ao cliente por meio de uma API publish subscribe \cite{quinn2015}.
+Para uma arquitetura no cliente ou uma arquitetura mista, existem \textit{frameworks} que provêm recursos suficientes para persistencia e controle no cliente. No caso da arquitetura mista, podem existir APIs no servidor implementados em diversas linguagens para gerenciar requisições e envios de dados ao cliente, além da possibiliade de responderem uma página renderizada \cite{ petitit2014, quinn2015}. Já para aplicações que possuem um MVC completo no cliente, o servidor pode servir meramente como um banco de dados, que provê as informações necessárias ao cliente por meio de uma API \textit{publish-subscribe}\footnote{Padrão utilizado em sistemas de mensageria, como SMS ou MQTT. Permite que um cliente registrado em um canal receba notificações quando um outro cliente faz publicações no mesmo canal.} \cite{quinn2015}.
 
 \begin{figure}[h!]
 	\centering
@@ -404,15 +382,15 @@ Para uma arquitetura no cliente ou uma arquitetura mista, existem \textit{framew
 	\label{fig:mvc}
 \end{figure}
 
-Apesar de suas diferenças e semelhanças, cada modelo possui vantagens e desvantagens. No caso de renderização no servidor, uma grande vantagem é a independência do cliente, que caso possua pouca capacidade de processamento, conseguirá executar a aplicação sem grandes problemas. Já para aplicações com renderização no cliente, é necessário que o dispositivo seja veloz o suficiente para executar a aplicação. Apesar disso, aplicações com renderização no cliente possuem geralmente uma interface mais rica e usável \cite{Ubl2015}. No caso deste trabalho, é proposta uma arquitetura mista, detalhada no capítulo 3 sobre o desenvolvimento.
+Apesar de suas diferenças e semelhanças, cada modelo possui vantagens e desvantagens. No caso de renderização no servidor, uma grande vantagem é a independência do cliente, que caso possua pouca capacidade de processamento, conseguirá executar a aplicação sem grandes problemas. Já para aplicações com renderização no cliente, é necessário que o dispositivo seja veloz o suficiente para executar a aplicação. Apesar disso, aplicações com renderização no cliente possuem geralmente uma interface mais rica e usável \cite{Ubl2015}. No caso deste trabalho, é proposta uma arquitetura mista, detalhada no Capítulo 2 sobre o desenvolvimento.
 
-Independente de onde aconteça a renderização, o MVC possui vantagens como possibilidade de reuso de código, separação entre níveis conseituais e menor acoplamento entre as camadas, possibilitando maior manutenabilidade e qualidade do código produzido \cite{krasner1988}. Entretanto, a qualidade do \textit{software} não é medida unicamente por sua arquitetura, testes são meios menos abstratos de se garantir a qualidade do software desenvolvido. A seguir, descorre-se sobre estratégias e tipos de testes encontrados na literatura.
+Independente de onde aconteça a renderização, o MVC possui vantagens como possibilidade de reuso de código, separação entre níveis conceituais e menor acoplamento entre as camadas, possibilitando maior manutenabilidade e qualidade do código produzido \cite{krasner1988}. Entretanto, a qualidade do \textit{software} não é medida unicamente por sua arquitetura, testes são meios menos abstratos de se garantir a qualidade do software desenvolvido. A seguir, descorre-se sobre estratégias e tipos de testes encontrados na literatura.
 
 \section{Testes de Software}
 
 O processo de teste de software procura determinar se um sistema atinge suas especificações e funciona corretamente no ambiente para o qual foi projetado, tendo como objetivo identificar falhas durante o desenvolvimento para que possam ser corrigidas antes da entrega do produto final  \cite{neto2005}. 
 
-Para entender o conceito de testes, é necessário compreender a diferença entre defeito, erro e falha. Um defeito se encontra no meio físico, é uma instrução de um passo, ou deifinição de dados incorreta. Um erro está no âmbito da informação, na construção de um software diferente do que foi especificado, sendo qualquer passo intermediário diferente do que é esperado. Uma falha, por sua vez, é o comportamento inesperado que afeta diretamente o usuário final da aplicação, podendo inviabilizar o uso do sistema \cite{ieee1990}, como ilustra a figura \ref{fig:erro}. 
+Para entender o conceito de testes, é necessário compreender a diferença entre defeito, erro e falha. Um defeito se encontra no meio físico é uma instrução de um passo, ou deifinição de dados incorreta. Um erro está no âmbito da informação, na construção de um software diferente do que foi especificado, sendo qualquer passo intermediário diferente do que é esperado. Uma falha, por sua vez, é o comportamento inesperado que afeta diretamente o usuário final da aplicação, podendo inviabilizar o uso do sistema \cite{ieee1990}, como ilustra a Figura \ref{fig:erro}. 
 
 \begin{figure}[h!]
 	\centering
@@ -423,7 +401,7 @@ Para entender o conceito de testes, é necessário compreender a diferença entr
 
 Testes podem ser projetados de dois pontos de vista: estrutural ou funcional. Os testes funcionais ignoram o mecanismo interno de execução e se concentram nos resultados gerados com o propósito de encontrar não conformidades com a especificação da funcionalidade. Testes funcionais são direcionados ao usuário e devem se preocupar unicamente com a funcionalidade. Já os testes estruturais analisam o funcionamento interno em diferentes níveis, podendo envolver todo o sistema, ou apenas partes dele. Para \citeonline{naik2008}, existem 3 níveis de testes estruturais, sendo eles de unidade, integração e sistema.
 
-Testes unitários são utilizados para testar de forma isolada funções, métodos ou classes. Após garantir que as unidades funcionam de forma satisfatória, os módulos são agrupados para se construir sub-sistemas maiores que são testados por meio das técnicas de teste de integração. Testes unitários são importantes pois, uma vez que o código está integrado a outros módulos, encontrar a causa de uma falha, se torna mais difícil \cite{naik2008}. Existem diferentes ferramentas de teste unitário para diversas linguagens, porém a maioria provê recursos semelhantes para construção de acertivas afim de verificar se os resultados retornados pelo código testado está de acordo com a especificação proposta, algumas dessas ferramentas são JUnit \cite{junit2015}, ActiveSupport \cite{activetest2015}, Mocha \cite{mocha2015}.
+Testes unitários são utilizados para testar de forma isolada funções, métodos ou classes. Após garantir que as unidades funcionam de forma satisfatória, os módulos são agrupados para se construir sub-sistemas maiores que são testados por meio das técnicas de teste de integração. Testes unitários são importantes pois, uma vez que o código está integrado a outros módulos, encontrar a causa de uma falha se torna mais difícil \cite{naik2008}. Existem diferentes ferramentas de teste unitário para diversas linguagens, porém a maioria provê recursos semelhantes para construção de acertivas a fim de verificar se os resultados retornados pelo código testado estão de acordo com a especificação proposta. Algumas dessas ferramentas são JUnit \cite{junit2015}, ActiveSupport \cite{activetest2015}, Mocha \cite{mocha2015}.
 
 As ferramentas citadas acima podem ser utilizadas também para construção de testes de integração. Testes estes que são efetuados de modo incremental, adicionando e testando, a cada ciclo, um novo módulo do sistema. Esse processo é repetido até que todos os módulos tenham sido integrados e testados. Esse nível de teste examina explicitamente as interfaces entre unidades a fim de verificar se o sistema é capaz de suportar testes do nível de sistema \cite{naik2008}.
 
@@ -432,21 +410,23 @@ Os testes a nível de sistema englobam testes básicos de instalação e configu
 
 \section{Metodologia \textit{Scrum}}
 
-O \textit{Scrum} é um framework ágil para gerenciamento de projetos, fundamentado no empirismo. O empirismo afirma que o conhecimento provém da experiência e de tomadas de decisões baseadas no que é conhecido. Desse modo, o \textit{Scrum} utiliza do método da inspeção e adaptação para reagir a mudanças e melhor lidar com a complexidade e riscos do projeto. Outro aspecto importante do método é o foco no aprendizado e difusão do conhecimento, em que todos os integrantes do time cooperam para o aprendizado coletivo e para um melhor desenvolvimento do produto \cite{scrum2013}. 
+O \textit{Scrum} é um \textit{framework} ágil para gerenciamento de projetos, fundamentado no empirismo. O empirismo afirma que o conhecimento provém da experiência e de tomadas de decisões baseadas no que é conhecido. Desse modo, o \textit{Scrum} utiliza do método da inspeção e adaptação para reagir a mudanças e melhor lidar com a complexidade e riscos do projeto. Outro aspecto importante do método é o foco no aprendizado e difusão do conhecimento, em que todos os integrantes do time cooperam para o aprendizado coletivo e para um melhor desenvolvimento do produto \cite{scrum2013}. 
 
-O \textit{Scrum} pode ser utilizado em diferentes contextos. Entretanto, surgiu para suprir uma demanda clara do processo produtivo da indústria de software, na qual inúmeros projetos falharam pela ineficiência dos processos produtivos em cascata, mais utilizados até meados dos anos 90, em projetos que custaram milhões e resultaram em fracaço para grandes organizações como \textit{FBI (Federal Bureau of Investigation)} ou \textit{NPR (National Public Radio)} \cite{scrum2014}.
+O \textit{Scrum} pode ser utilizado em diferentes contextos. Entretanto, surgiu para suprir uma demanda clara do processo produtivo da indústria de software, na qual inúmeros projetos falharam pela ineficiência dos processos produtivos em cascata, mais utilizados até meados dos anos 90, em projetos que custaram milhões e resultaram em fracasso para grandes organizações como \textit{FBI (Federal Bureau of Investigation)} ou \textit{NPR (National Public Radio)} \cite{scrum2014}.
 
 Para este trabalho, foram levados em consideração quatro princípios básicos da metodologia listados por \citeonline{scrum2014}, sendo eles: 
-	\begin{itemize}
+	\begin{enumerate}
 		\item \textbf{Planejar é útil. Seguir cegamente os planos é burrice.} Simplifique o processo de planejamento e aja o quanto antes. Reavalie o seu planejamento com frequência, especular sobre o desconhecido é pouco eficaz, devido à dificuldade de se controlar inúmeras variáveis do processo.
 		\item \textbf{Inspeção e Adaptação.} De tempos em tempos é necessário rever o trabalho que foi desenvolvido e verificar se o caminho traçado ainda está correto, ou se existem formas melhores de fazê-lo.
 		\item \textbf{Mudar ou Morrer.} Ficar preso em métodos antigos de mandar e controlar ou manter uma previsibilidade rígida resultará no fracasso. A mudança gera vantagens estratégicas e comerciais e deve sempre ser bem-vinda.
 		\item \textbf{Fracasse rápido para corrigir o problema o quanto antes.} Todo o trabalho que gera um desperdício de esforço deve ser eliminado, possibilitando que produto real seja entregue ao usuário com o tempo e esforço economizados.
-	\end{itemize}
+	\end{enumerate}
 	
-Claramente, os termos utilizados pelo autor são metafóricos, mas indicam de forma simples a ideia por trás dos tópicos.
+Claramente, os termos utilizados pelo autor são metafóricos, mas indicam de forma simples a ideia por trás dos tópicos: A possibilidade de mudança e adaptação do \textit{framework} para diferentes times e organizações, possibilitando a adequação do método para a sua utilização.
 
-Por fim, uma ultima prática que necessita de destaque para qualquer desenvolvimento ágil de software,  é o processo de integração contínua. Os times que utilizam essa prática visam alcançar dois resultados primários: a redução do custo para se requerido para cada episódio de integração dos componentes do sistema e a possibilidade de entrega de produto funcional a qualquer momento do desenvolvimento \cite{agile2015}.
+Aplicado a este trabalho, o \textit{Scrum} sofreu várias adaptações para que pudesse ser utilizado. Dos papéis definidos no \textit{Framework}, apenas o dono do produto e o time de desenvolvimento foram mantidos, sendo desempenhados pelo orientador e pelo autor, respectivamente. Com relação às práticas sugeridas por \citeonline{scrum2014}, apenas a \textit{sprint review} e o planejamento da \textit{sprint} foram mantidas, com a participação do dono do produto e do time de desenvolvimento. Para a organização das histórias a serem cumpridas a cada \textit{sprint} foi utilizado o \textit{kanban} para controlar o fluxo de trabalho e estimar as próximas interações.
 
-Na prática, estes objetivos requerem um processo de integração que seja passível de reprodução, pelo menos, em sua grande maioria, e que seja "automático". Isto é conseguido através de ferramentas de controle de versão, políticas e convenções da equipe e ferramentas projetadas especificamente para ajudar a alcançar a integração contínua \cite{agile2015}.
+Por fim, uma última prática que necessita de destaque para qualquer desenvolvimento ágil de software,  é o processo de integração contínua. Os times que utilizam essa prática visam alcançar dois resultados primários: a redução do custo para se requerido para cada episódio de integração dos componentes do sistema e a possibilidade de entrega de produto funcional a qualquer momento do desenvolvimento \cite{agile2015}.
+
+Na prática, estes objetivos requerem um processo de integração que seja passível de reprodução, pelo menos, em sua grande maioria, e que seja \lq\lq automático\rq\rq. Isto é conseguido através de ferramentas de controle de versão, políticas e convenções da equipe e ferramentas projetadas especificamente para ajudar a alcançar a integração contínua \cite{agile2015}.
 

@@ -1,6 +1,6 @@
 \chapter[Desenvolvimento]{Desenvolvimento}
 
-Este capítulo engloba questões do desenvolvimento do produto, sendos estas: modelagem do domínio, suporte tecnológico, arquitetura do software, testes, gerência de configuração e aspectos gerais;
+Este capítulo engloba questões do desenvolvimento do produto, sendos estas: modelagem do domínio, suporte tecnológico, arquitetura do software, testes, gerência de configuração e aspectos gerais.
 
 \section{Modelagem do Domínio}
 
@@ -22,9 +22,9 @@ Primeiramente, foi modelado um vídeo interativo que pudesse ser utilizado na co
   	\label{fig:estrutura}
 \end{figure}
 
-Cada subvídeo possui informações básicas sobre a mídia de vídeo que será apresentada por ele, como título e uma breve descrição do conteúdo. Além disso, possui um nível de visibilidade para ser apresentado apenas ao perfil específico para o qual foi projetado, garantindo assim a capacidade de adaptação a nível de conteúdo. A fig. \ref{fig:video} apresenta um diagrama do vídeo interativo, que no sistema é denominado Hypervideo.
+Cada subvídeo possui informações básicas sobre a mídia de vídeo que será apresentada por ele, como título e uma breve descrição do conteúdo. Além disso, possui um nível de visibilidade para ser apresentado apenas ao perfil específico para o qual foi projetado, garantindo assim a capacidade de adaptação a nível de conteúdo. A Fig. \ref{fig:video} apresenta um diagrama do vídeo interativo, que no sistema é denominado Hypervideo.
 
-Por meio da figura \ref{fig:video}, é possível perceber que existe uma lista de conexões para cada Hypervideo, essa lista representa o conjunto de arestas do grafo que tem como vértices os subvídeos e questões pertencentes a o vídeo interativo. Como visto no capítulo anterior, as teorias behavioristas apresentam o conteúdo de forma sequencial e linear, já as linhas cognitivistas compreendem estruturas de decisão e caminhos distintos para cada aprendiz. A figura \ref{fig:estrutura} mostra como essa estrutura de grafo pode se adaptar para adequar-se a ambas as formas de apresentação.
+Por meio da Figura \ref{fig:video}, é possível perceber que existe uma lista de conexões para cada Hypervideo. Essa lista representa o conjunto de arestas do grafo que tem como vértices os subvídeos e questões pertencentes a o vídeo interativo. Como visto no capítulo anterior, as teorias behavioristas apresentam o conteúdo de forma sequencial e linear, já as linhas cognitivistas compreendem estruturas de decisão e caminhos distintos para cada aprendiz. A Figura \ref{fig:estrutura} mostra como essa estrutura de grafo pode se adaptar para adequar-se a ambas as formas de apresentação.
 
 \begin{figure}[h!]
 	\centering
@@ -33,9 +33,9 @@ Por meio da figura \ref{fig:video}, é possível perceber que existe uma lista d
   	\label{fig:curso}
 \end{figure}
 
-Para que fosse possível desenvolver uma adaptação da navegação que utilizasse a QRN, foi necessário modelar também a estrutura do curso que comportasse os hypervídeos e as informaçõs necessárias para os cálculos. É proposto que um curso possua também, uma estrutura de grafo que tenha como vértices os seus Hypervideos, e que as conexões criadas pelo professor representem as ligações conceituais entre os tópicos apresentados em cada hypervídeo. A figura \ref{fig:curso} apresenta o modelo relativo ao curso que foi denominado \textit{Subject}.
+Para que fosse possível desenvolver uma adaptação da navegação que utilizasse a QRN, foi necessário modelar também a estrutura do curso que comportasse os hypervídeos e as informaçõs necessárias para os cálculos. É proposto que um curso possua também uma estrutura de grafo que tenha como vértices os seus Hypervideos, e que as conexões criadas pelo professor representem as ligações conceituais entre os tópicos apresentados em cada hypervídeo. A Figura \ref{fig:curso} apresenta o modelo relativo ao curso que foi denominado \textit{Subject}.
 
-A próxima modelagem feita foi referente aos dados do usuário: cursos que assiste, cursos construídos por ele, percentual de conclusão de um curso, questões respondidas, hypervideos assistidos, etc. Todas essas informações requereram modelos que vinculassem cada elemento de um curso ao usuário para que se pudesse calcular os coeficientes de quantização para os nodos da rede. A figura \ref{fig:userdata} mostra o modelo de domínio completo do \textit{software}.
+A próxima modelagem feita foi referente aos dados do usuário: cursos que assiste, cursos construídos por ele, percentual de conclusão de um curso, questões respondidas, hypervideos assistidos, etc. Todas essas informações requereram modelos que vinculassem cada elemento de um curso ao usuário para que se pudesse calcular os coeficientes de quantização para os nodos da rede. A Figura \ref{fig:userdata} mostra o modelo de domínio completo do \textit{software}.
 
 \begin{figure}[h!]
 	\centering
@@ -48,13 +48,14 @@ Como a quantização da rede é definida de forma diferente para cada usuário, 
 
 \section{Suporte Tecnológico}
 
-Sobre o ponto de vista arquitetural, foram elicitadas ferramentas que proporcio- nassem maiores facilidades para o desenvolvimento do sistema. Foram selecionados três \textit{frameworks} que possibilitam o desenvolvimento de aplicações \textit{web} com certo nível de abstração arquitetural, que são mantidos segundo licenças de software livre e que possuem comunidades ativas. Sendo estes: Grails \cite{grails2015}, Ruby on Rails \cite{rubyrails2015}, e Meteor \cite{meteor2015}. 
+Sobre o ponto de vista arquitetural, foram elicitadas ferramentas que proporcio- nassem facilidades para o desenvolvimento do sistema. Foram selecionados três \textit{frameworks} que possibilitam o desenvolvimento de aplicações \textit{web} com certo nível de abstração arquitetural, que são mantidos segundo licenças de software livre e que possuem comunidades ativas. Sendo estes: Grails \cite{grails2015}, Ruby on Rails \cite{rubyrails2015}, e Meteor \cite{meteor2015}. 
 
 Para avaliar as ferramentas selecionadas, foi construído um cenário de prova de conceito, com a finalidade de verificar o esforço necessário para se implementar um pequeno software de manutenção de usuários. Os resultados coletados são descritos na tabela \ref{tab:tempo} abaixo:
 
 \begin{table}[h!]
 	\centering
-	\begin{tabular}{| c | c |}
+	\caption{Tempo para implementação da funcionalidade.}
+	\begin{tabular}{ c | c }
 		\hline
 		\textit{Framework} & Tempo \\
 		\hline
@@ -65,11 +66,10 @@ Para avaliar as ferramentas selecionadas, foi construído um cenário de prova d
 		Grails & 74 min \\
 		\hline
 	\end{tabular}
-	\caption{Tempo para implementação da funcionalidade.}
 	\label{tab:tempo}
 \end{table}
 
-Os \textit{frameworks} Grails e Ruby on Rails possuem estilos arquiteturais bastante semelhantes, já que ambos são orientados a convensão, e possuem ferramentas de terminal interativo para criação e adição de elementos do sistema (como modelos, visões, controladoras e \textit{plugins}). Entretanto, o tempo para se desenvolver a funcionalidade com Ruby on Rails foi menor devido à configuração do ambiente de desenvolvimento e dependências do \textit{framework}.
+Os \textit{frameworks} Grails e Ruby on Rails possuem estilos arquiteturais bastante semelhantes, já que ambos são orientados a convenção, e possuem ferramentas de terminal interativo para criação e adição de elementos do sistema (como modelos, visões, controladoras e \textit{plugins}). Entretanto, o tempo para se desenvolver a funcionalidade com Ruby on Rails foi menor devido à configuração do ambiente de desenvolvimento e dependências do \textit{framework}.
 
 Uma das vantagens da utilização do Ruby on Rails para o desenvolvimento é a existência de uma comunidade bastante ativa e de documentação abrangente sobre vários dos plugins que são disponibilizados para a plataforma. Porém, a configuração de uma ferramenta para renderização no cliente não é trivial: as complicações com a construção de APIs para comunicação remota e com a utilização de plugins JSON para recuperar dados do servidor impossibilitaram a construção da funcionalidade com este recurso.
 
@@ -77,9 +77,9 @@ Para a plataforma Grails, os mesmos problemas foram encontrados para a construç
 
 O processo de instalação e utilização da plataforma Meteor foi o mais simples dentre as opções. Todas as dependências do sistema são mantidas por meio do gerenciador de pacotes do Node.js \cite{nodejs2015} e foram instaladas sem nenhum empecilho.Além disso, o tempo para se implementar a funcionalidade proposta foi o menor, apresentou maior facilidade na construção de aplicações com renderização no cliente, possui comunidade ativa e mantém também mecanismos de teste e depuração para as aplicações, em sua maioria sob licenças de software livre compatíveis com GPL v3 adotada neste projeto.
 
-A opção por uma ferramenta que facilite a renderização no cliente é uma necessidade da proposta para construção do curso, já que para criar um grafo de hypervideos em um curso, ou um grafo de subvideos e questões dentro de um hypervideo, é necessário construir uma biblioteca para permitir a utilização do sistema sem que, a cada interação se gere uma nova renderização da página proveniente do servidor, e que evite perda de dados caso ocorra falha de conexão com a \textit{internet}. Arquiteturas construídas com Ruby on Rails ou Grails não oferecem suporte a esse tipo de interação, exigindo bibliotecas externas à plataforma e o conhecimento em linguagens de programação diferentes das utilizadas nativamente no \textit{framework}, como \textit{JavaScript} ou \textit{CoffeScript}.
+A opção por uma ferramenta que facilite a renderização no cliente é uma necessidade da proposta para construção do curso, já que para criar um grafo de hypervideos em um curso, ou um grafo de subvideos e questões dentro de um hypervideo, é necessário construir uma biblioteca para permitir a utilização do sistema sem que, a cada interação, se gere uma nova renderização da página proveniente do servidor, e que evite perda de dados caso ocorra falha de conexão com a \textit{internet}. Arquiteturas construídas com Ruby on Rails ou Grails não oferecem suporte a esse tipo de interação, exigindo bibliotecas externas à plataforma e o conhecimento em linguagens de programação diferentes das utilizadas nativamente no \textit{framework}, como \textit{JavaScript} ou \textit{CoffeScript}.
 
-Com esta análise, e pela necessidade de domínio em apenas uma linguagem: o \textit{JavaScript}, optou-se pela plataforma \textit{Meteor}. Também pela possibilidade de incluir bibliotecas para componentes visuais \textit{web}, como o \textit{Polymer} \cite{polymer2015}, o que contribui para a construção de interfaces de usuário mais ricas. A lista completa de pacotes e ferramentas utilizadas se encontra no Apêndice A.
+Com esta análise, e pela necessidade de domínio em apenas uma linguagem, o \textit{JavaScript}, optou-se pela plataforma \textit{Meteor}. Também pela possibilidade de incluir bibliotecas para componentes visuais \textit{web}, como o \textit{Polymer} \cite{polymer2015}, o que contribui para a construção de interfaces de usuário mais ricas. A lista completa de pacotes e ferramentas utilizadas se encontra no Apêndice A.
 
 \section{Arquitetura do Sistema}
 
@@ -93,9 +93,9 @@ Antes de compreender a arquitetura do sistema proposto, é preciso compreender c
   	\label{fig:meteorarq}
 \end{figure}
 
-O banco de dados utilizado pelo \textit{Meteor} é o MongoDB, que dá suporte a arquivos JSON, é facilmente escalável e possui boa performance. A aplicação no servidor roda em um \textit{container} Node.js e o \textit{framework} gerencia as trocas de dados cliente-servidor por meio de uma implementação em JavaScript da API do MongoDB que roda no navegador, chamada MiniMongo \cite{mongodb2015}. A figura \ref{fig:meteorarq} mostra como o \textit{Meteor}  gerencia os dados da aplicação e como são providos os serviços para os clientes. 
+O banco de dados utilizado pelo \textit{Meteor} é o MongoDB, que dá suporte a arquivos JSON, é facilmente escalável e possui boa performance. A aplicação no servidor roda em um \textit{container} Node.js e o \textit{framework} gerencia as trocas de dados cliente-servidor por meio de uma implementação em JavaScript da API do MongoDB que roda no navegador, chamada MiniMongo \cite{mongodb2015}. A Figura \ref{fig:meteorarq} mostra como o \textit{Meteor}  gerencia os dados da aplicação e como são providos os serviços para os clientes. 
 
-A plataforma não restringe, nem define um modelo arquitetural específico, abrindo espaço para que o desenvolvedor se encarregue de projetar de modo geral a arquitetura da aplicação. Inicialmente, uma aplicação possui arquitetura semelhante a mostrada na figura \ref{fig:subarq1}, de forma que não existe separação nenhuma entre camadas lógicas, apenas entre servidor e cliente. A primeira forma da arquitetura proposta para o Sistema de Vídeos Interativos incluiu à aplicação uma camada de modelo, separando os dados do domínio, como ilustra a figura \ref{fig:subarq2}.
+A plataforma não restringe, nem define um modelo arquitetural específico, abrindo espaço para que o desenvolvedor se encarregue de projetar de modo geral a arquitetura da aplicação. Inicialmente, uma aplicação possui arquitetura semelhante a mostrada na Figura \ref{fig:subarq1}, de forma que não existe separação nenhuma entre camadas lógicas, apenas entre servidor e cliente. A primeira forma da arquitetura proposta para o Sistema de Vídeos Interativos incluiu à aplicação uma camada de modelo, separando os dados do domínio, como ilustra a Figura \ref{fig:subarq2}.
 
 A lógica no cliente de uma aplicação \textit{Meteor} é gerenciada por uma biblioteca de renderização nativa (i.e. \textit{Blaze}), que responde reativamente às alterações que ocorrem nos dados locais. Essa característica permite a criação de aplicações nativamente reativas e gera requisições menores por utilizar um protocolo próprio e mais leve, denominado DDP (\textit{Distributed Data Protocol}) \cite{blaze2015}. 
 
@@ -130,11 +130,11 @@ A lógica no cliente de uma aplicação \textit{Meteor} é gerenciada por uma bi
 	\label{fig:arquitetura}
 \end{figure}
 
-Apesar das vantagens, o \textit{Blaze} possui alto acoplamento entre o controle e a visão, pois gerencia ambas as abstrações lógicas em um único arquivo, dificultando futuras manutenções da aplicação. Com a finalidade de se separar a lógica de controle e apresentação, foi adicionado ao sistema mais uma ferramenta, o \textit{Polymer} \cite{polymer2015}, que utiliza dados do modelo recebidos pelo \textit{Blaze} sempre que há alterações, e controla unicamente funções de apresentação, como posicionamento, cores, animações e outras operações da camada de visão. Esta versão é ilustrada pela figura \ref{fig:subarq3}.
+Apesar das vantagens, o \textit{Blaze} possui alto acoplamento entre o controle e a visão, pois gerencia ambas as abstrações lógicas em um único arquivo, dificultando futuras manutenções da aplicação. Com a finalidade de se separar a lógica de controle e apresentação, foi adicionado ao sistema mais uma ferramenta, o \textit{Polymer} \cite{polymer2015}, que utiliza dados do modelo recebidos pelo \textit{Blaze} sempre que há alterações, e controla unicamente funções de apresentação, como posicionamento, cores, animações e outras operações da camada de visão. Esta versão é ilustrada pela Figura \ref{fig:subarq3}.
 
-Originalmente, aplicações \textit{Meteor} sincronizam os dados do cliente com o servidor automaticamente, sem que haja uma assinatura explícita dos dados (\textit{i.e. subscription}). Com o crescimento da base de dados do servidor, se torna inseguro e inviável que os dados sejam compartilhados entre todos os clientes ativos da aplicação. Para corrigir esta falha, a camada de controle foi extendida ao servidor com a função de limitar os dados que eram enviados para cada cliente por meio do padrão \textit{publish-subscribe}, sendo que apenas os dados necessários para a atual rota do usuário eram enviados para o cliente. Além disso, restrições de permissão para alteração dos dados foram criadas para manter a confiabilidade do banco. Esta é a versão atual da arquitetura, como ilustra a figura \ref{fig:subarq4}.
+Originalmente, aplicações \textit{Meteor} sincronizam os dados do cliente com o servidor automaticamente, sem que haja uma assinatura explícita dos dados (\textit{i.e. subscription}). Com o crescimento da base de dados do servidor, se torna inseguro e inviável que os dados sejam compartilhados entre todos os clientes ativos da aplicação. Para corrigir esta falha, a camada de controle foi extendida ao servidor com a função de limitar os dados que eram enviados para cada cliente por meio do padrão \textit{publish-subscribe}, sendo que apenas os dados necessários para a atual rota do usuário eram enviados para o cliente. Além disso, restrições de permissão para alteração dos dados foram criadas para manter a confiabilidade do banco. Esta é a versão atual da arquitetura, como ilustra a Figura \ref{fig:subarq4}.
 
-Agora que a arquitetura lógica foi descrita, deve-se verificar como esta foi implementada do ponto de vista de pacotes, com a finalidade de identificar a estrutura de diretórios e organização dos arquivos e dependências do projeto. O diagrama da fig. \ref{fig:arq_pacotes} apresenta a organização dos pacotes.
+Agora que a arquitetura lógica foi descrita, deve-se verificar como esta foi implementada do ponto de vista de pacotes, com a finalidade de identificar a estrutura de diretórios e organização dos arquivos e dependências do projeto. O diagrama da Fig. \ref{fig:arq_pacotes} apresenta a organização dos pacotes.
 
 \begin{figure}[h!]
   	\centering
@@ -145,13 +145,13 @@ Agora que a arquitetura lógica foi descrita, deve-se verificar como esta foi im
 
 É possível perceber que no diagrama não existe nenhum pacote denominado controle, ou visão. Isto se deve ao fato de que o diretório em que se encontram os arquivos do \textit{Blaze} é geralmente denominado \textit{template}. No caso desta aplicação esse pacote é a camada de controle do cliente. A camada de visão se encontra no pacote \textit{public} juntamente com quaisquer outros recursos utilizados pela aplicação, como imagens.
 
-Além disso, não existe nenhuma separação em pacotes no servidor, para modelo e controle. Até o momento deste trabalho, para as operações do controle no servidor são necessários apenas dois arquivos e para o modelo, apenas um, por esta razão, ainda não houve a necessidade de se criar pacotes diferentes.
+Além disso, não existe nenhuma separação em pacotes no servidor, para modelo e controle. Até o momento deste trabalho, para as operações do controle no servidor são necessários apenas dois arquivos e para o modelo, apenas um. Por esta razão, ainda não houve a necessidade de se criar pacotes diferentes.
 
 O pacote de \textit{scripts} merece certo destaque pelo fato de: gerenciar testes dos componentes visuais; rodar a aplicação em modo de \textit{profile} para análise de desempenho; e para gerar relatórios de cobertura e de análise estática de código, como aderência ao padrão de estilo \textit{JavaScript} para o \textit{Meteor}. Todas as saídas dos \textit{scripts} são geradas no diretório oculto de \textit{outputs} e servem como base para parte do processo de integração contínua, melhor explicado no tópico sobre gerência de configuração.
 
 \section{Testes}
 
-O \textit{Velocity} é o \textit{framework} oficial de testes para aplicações \textit{Meteor}, suportando diferentes motores de teste --- como Mocha \cite{mocha2015}, Jasmine \cite{jasmine2015} ou Cucumber \cite{cucumber2015} --- e permitindo que os resultados sejam exibidos em um componente reativo na interface da própria aplicação (fig. \ref{fig:teste_a}), ou via terminal (fig. \ref{fig:teste_b}), como um mecanismo para suporte em ambientes de integração contínua.
+O \textit{Velocity} é o \textit{framework} oficial de testes para aplicações \textit{Meteor}, suportando diferentes motores de teste --- como Mocha \cite{mocha2015}, Jasmine \cite{jasmine2015} ou Cucumber \cite{cucumber2015} --- e permitindo que os resultados sejam exibidos em um componente reativo na interface da própria aplicação (Fig. \ref{fig:teste_a}), ou via terminal (Fig. \ref{fig:teste_b}), como um mecanismo para suporte em ambientes de integração contínua.
 \\
 \\
 \begin{figure}[h!]
@@ -174,7 +174,7 @@ O \textit{Velocity} é o \textit{framework} oficial de testes para aplicações 
 
 Para construção dos testes da aplicação foi utilizado o motor \textit{Mocha}, que fornece meios para a implementação de testes unitários e de integração que rodam com apenas um espelhamento da aplicação, reduzindo o consumo de memória se comparado com o Jasmine, que utiliza dois espelhos diferentes: um para testes unitários e outro para testes de integração \cite{jasmine2015}. Essa característica é importante para um ambiente de integração contínua, pois reduz as configurações mínimas para a máquina que hospeda o serviço.
 
-Além do \textit{Velocity}, foi necessário configurar um mecanismo de testes para os componentes \textit{web} construídos. A comunidade que mantém o \textit{Polymer}, mantém também uma ferramenta de testes unitários e um \textit{plugin} para gerar relatórios de cobertura. O \textit{script} para os testes dos componentes é encontrado no diretório de \textit{scripts} e os relatórios de testes, como mostrado na figura \ref{fig:teste_polymer}, são gerados dentro da pasta de \textit{outputs}.
+Além do \textit{Velocity}, foi necessário configurar um mecanismo de testes para os componentes \textit{web} construídos. A comunidade que mantém o \textit{Polymer} mantém também uma ferramenta de testes unitários e um \textit{plugin} para gerar relatórios de cobertura. O \textit{script} para os testes dos componentes é encontrado no diretório de \textit{scripts} e os relatórios de testes, como mostrado na Figura \ref{fig:teste_polymer}, são gerados dentro da pasta de \textit{outputs}.
 
 \begin{figure}[h!]
   	\centering
@@ -183,9 +183,9 @@ Além do \textit{Velocity}, foi necessário configurar um mecanismo de testes pa
   	\label{fig:teste_polymer}
 \end{figure}
 
-Após atualização para versão 1.2 do \textit{Meteor}, devido à refatorações na lógica de criação de aplicações espelhadas, não existem \textit{plugins} para gerar cobertura de código para a aplicação que seja compatível com o \textit{Velocity}, por essa razão, não são gerados relatórios de cobertura para a aplicação como um todo.
+Após atualização para versão 1.2 do \textit{Meteor}, devido à refatorações na lógica de criação de aplicações espelhadas, não existem \textit{plugins} para gerar cobertura de código para a aplicação que seja compatível com o \textit{Velocity}. Por essa razão, não são gerados relatórios de cobertura para a aplicação como um todo.
 
-Além dos testes a níveis unitário e de integração utilizados, foi implementado um \textit{script} de configuração de uma ferramenta para monitoramento de performance, como mostrado na figura \ref{fig:profile}. A ferramenta foi mais utilizada para analisar o tempo de resposta para as operações de \textit{publish} processadas no servidor, devido ao uso de consultas recursivas ao banco para composição de múltiplas coleções em apenas um tópico de \textit{publish} \cite{kadira2015}.
+Além dos testes a níveis unitário e de integração utilizados, foi implementado um \textit{script} de configuração de uma ferramenta para monitoramento de performance, como mostrado na Figura \ref{fig:profile}. A ferramenta foi mais utilizada para analisar o tempo de resposta para as operações de \textit{publish} processadas no servidor, devido ao uso de consultas recursivas ao banco para composição de múltiplas coleções em apenas um tópico de \textit{publish} \cite{kadira2015}.
 
 \begin{figure}[h!]
   	\centering
@@ -196,7 +196,7 @@ Além dos testes a níveis unitário e de integração utilizados, foi implement
 
 \section{Gerência de Configuração}
 
-O controle de versão é a espinha dorsal de qualquer gerência de configuração, apoiando atividades de controle de mudanças e de integração contínua. Ferramentas de controle de versão atuam na identificação e armazenamento dos itens de configuração, e mantém versões durante todo o cíclo de vida do software, criando rótulos e ramificações no projeto \cite{swebok2014}. 
+O controle de versão é a espinha dorsal de qualquer gerência de configuração, apoiando atividades de controle de mudanças e de integração contínua. Ferramentas de controle de versão atuam na identificação e armazenamento dos itens de configuração, e mantém versões durante todo o ciclo de vida do software, criando rótulos e ramificações no projeto \cite{swebok2014}. 
 
 Existem diversas ferramentas que proporcionam diferentes formas de versionamento. Neste projeto, foi utilizado um repositório \textit{git}, que mantém ramificações por meio de \textit{branches} e registra mudanças na forma de \textit{commits}. O repositório está mantido em uma ferramenta \textit{on-line} chamada \textit{Github}, que possui facilidades para gerenciamento e correção de falhas ou melhorias por meio de \textit{issues} e possibilita a comunicação com ferramentas externas para gerenciamento de \textit{builds}, por meio de \textit{webhooks} \cite{github2015}.
 
@@ -204,9 +204,9 @@ O processo de integração contínua tem como objetivo garantir que as mudanças
 
 Para o repositório de código do projeto, foram criadas apenas duas \textit{branches}, uma de desenvolvimento (\textit{devel}), e a principal (\textit{master}). Atualizações do desenvolvimento são sempre submetidas para a \textit{branch devel}, e o ambiente de integração contínua se encarrega de gerar uma nova \textit{build}, rodar os testes da aplicação, gerar os relatórios de análise estática de código e por fim, caso o resultado seja considerado satisfatório, as alterações são submetidas para a \textit{branch master}. 
 
-No momento da construção do projeto o relatório de análise do código gerado no pacote de \textit{scripts} será carregado pelo \textit{Jenkins} para popular o gráfico de alertas por \textit{build}, proporcionando assim, um histórico sobre a qualidade do código produzido e a sua evolução no decorrer do projeto.
+No momento da construção do projeto o relatório de análise do código gerado no pacote de \textit{scripts} foi carregado pelo \textit{Jenkins} para popular o gráfico de alertas por \textit{build}, proporcionando assim um histórico sobre a qualidade do código produzido e a sua evolução no decorrer do projeto.
 
-Caso existam falhas nas alterações que violem as acertivas definidas para o conjunto de testes da aplicação, a \textit{build} terá falhado, permitindo assim, que as correções necessárias possam ser feitas antes da entrega do produto. A figura \ref{fig:jenkins} mostra o ambiente de integração contínua configurado para o projeto.
+Caso existissem falhas nas alterações que violassem as acertivas definidas para o conjunto de testes da aplicação, a \textit{build} falharia, permitindo assim que as correções necessárias pudessem ser feitas antes da entrega do produto. A Figura \ref{fig:jenkins} mostra o ambiente de integração contínua configurado para o projeto.
 
 \begin{figure}[h!]
   	\centering
@@ -215,7 +215,7 @@ Caso existam falhas nas alterações que violem as acertivas definidas para o co
   	\label{fig:jenkins}
 \end{figure}
 
-Os resultados das \textit{builds} podem ser visualizados diretamente no repositório do \textit{Github}, por meio do \textit{plugin} de \textit{status} da última construção do projeto, como mostrado na fígura \ref{fig:status}, que apresenta como o indicador aparece quando a construção e testes passam (fig. \ref{fig:status_a}), ou não (fig \ref{fig:status_b}).
+Os resultados das \textit{builds} podem ser visualizados diretamente no repositório do \textit{Github}, por meio do \textit{plugin} de \textit{status} da última construção do projeto, como mostrado na Figura \ref{fig:status}, que apresenta como o indicador aparece quando a construção e testes passam (Fig. \ref{fig:status_a}), ou não (Fig \ref{fig:status_b}).
 
 \begin{figure}[h!]
   	\centering
@@ -241,10 +241,10 @@ De forma geral, o processo de desenvolvimento do sistema foi guiado por marcos (
 
 O foco inicial do trabalho foi levantar um ambiente com as ferramentas necessárias para o desenvolvimento (como os ambientes local e integração contínua). Posteriormente, foi desenvolvido o módulo de autoria, o  módulo de visualização e só então o algoritmo de quantização da rede. Entre estas etapas o sistema sofreu várias mudanças, as mais importantes são: 
 \begin{itemize}
-	\item mudanças na arquitetura, sendo estas: a separação do modelo de domínio; a separação da camada de visão por meio da componentização; e a organização da camada de controle, como ilustrado na figura \ref{fig:arquitetura}.
-	\item mudanças dos testes da aplicação que inicialmente eram apenas testes \textit{Meteor} e passaram a englobar testes \textit{Polymer}.
-	\item mudanças nos \textit{plugins} do ambiente de integração contínua para englobar análise estática de código e disparo automático de \textit{builds}.
-	\item mudanças nos \textit{scripts} de teste para adicionar relatórios de cobertura e de análise de código.
+	\item mudanças na arquitetura, sendo estas: a separação do modelo de domínio; a separação da camada de visão por meio da componentização; e a organização da camada de controle, como ilustrado na Figura \ref{fig:arquitetura};
+	\item mudanças dos testes da aplicação, que inicialmente eram apenas testes \textit{Meteor} e passaram a englobar testes \textit{Polymer};
+	\item mudanças nos \textit{plugins} do ambiente de integração contínua para englobar análise estática de código e disparo automático de \textit{builds};
+	\item mudanças nos \textit{scripts} de teste para adicionar relatórios de cobertura e de análise de código;
 	\item mudanças no estilo de codificação para adequar ao padrão \textit{JavaScript} segundo o \textit{Meteor}.
 \end{itemize}
 
